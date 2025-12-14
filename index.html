@@ -5,16 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fashion Hub - Premium Store</title>
     
+    <!-- Meta Tags for Facebook (Default) -->
+    <meta property="og:title" content="Fashion Hub - প্রিমিয়াম কালেকশন">
+    <meta property="og:description" content="সেরা মানের পোশাক এবং আধুনিক ডিজাইন। এখনই অর্ডার করুন!">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop">
+    
+    <!-- Resources -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Config & Styles -->
     <script>
         tailwind.config = {
-            theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { brand: { 500: '#22c55e', 600: '#16a34a', 800: '#166534' } }, animation: { 'bounce-slow': 'bounce 3s infinite' } } }
+            theme: { extend: { fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'], serif: ['Playfair Display', 'serif'] }, colors: { brand: { 500: '#22c55e', 600: '#16a34a', 800: '#166534' } }, animation: { 'bounce-slow': 'bounce 3s infinite', 'pulse-fast': 'pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite' } } }
         }
     </script>
     <style>
@@ -25,12 +30,25 @@
         .modal-content { transform: scale(0.9) translateY(20px); transition: all 0.3s ease-in-out; }
         .modal.active .modal-content { transform: scale(1) translateY(0); }
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .tab-btn.active { background-color: #16a34a; color: white; border-color: #16a34a; box-shadow: 0 4px 6px -1px rgba(22, 163, 74, 0.3); }
+        .tab-btn.active { background-color: #16a34a; color: white; border-color: #16a34a; }
+        
+        /* Highlight Effect for Specific Product */
+        .highlight-product {
+            border: 2px solid #16a34a !important;
+            box-shadow: 0 0 20px rgba(22, 163, 74, 0.3) !important;
+            transform: scale(1.02);
+            transition: all 0.5s ease;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased font-sans relative">
 
-    <!-- Floating WhatsApp -->
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-24 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl z-50 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2">
+        <i class="fas fa-check-circle text-brand-500"></i> <span id="toastMsg">লিংক কপি হয়েছে!</span>
+    </div>
+
+    <!-- WhatsApp Button -->
     <a href="https://wa.me/916291767175" target="_blank" class="fixed top-24 right-4 z-40 bg-[#25D366] hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 animate-bounce-slow border-2 border-white">
         <i class="fab fa-whatsapp text-3xl"></i>
     </a>
@@ -38,7 +56,7 @@
     <!-- Navbar -->
     <nav class="glass-nav fixed w-full z-50 top-0 border-b border-gray-100 shadow-sm">
         <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-2">
+            <a href="?" class="flex items-center gap-2">
                 <div class="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center text-brand-600"><i class="fas fa-gem text-xl"></i></div>
                 <div><h1 class="text-xl font-bold font-serif text-gray-900 leading-none">Fashion<span class="text-brand-600">Hub</span></h1></div>
             </a>
@@ -105,7 +123,7 @@
         <div class="text-gray-600 text-xs">&copy; 2025 Fashion Hub.</div>
     </footer>
 
-    <!-- ORDER MODAL (UPDATED WITH DESCRIPTION) -->
+    <!-- ORDER MODAL -->
     <div id="orderModal" class="modal fixed inset-0 z-[60] flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 overflow-y-auto">
         <div class="modal-content bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative">
             <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:text-red-600 w-8 h-8 rounded-full z-10"><i class="fas fa-times"></i></button>
@@ -114,17 +132,14 @@
                 <p class="text-brand-100 text-xs mt-1">আপনার তথ্য দিন, আমরা যোগাযোগ করবো</p>
             </div>
             <div class="p-6">
-                <!-- Product Summary -->
                 <div class="flex gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100 mb-4">
                     <img id="modalImg" src="" class="w-16 h-16 object-cover rounded-lg border">
                     <div>
                         <h4 id="modalPName" class="font-bold text-gray-900">Name</h4>
                         <p id="modalPPrice" class="text-brand-600 font-bold">Price</p>
-                        <!-- 🔥 DESCRIPTION IN MODAL 🔥 -->
-                        <p id="modalPDesc" class="text-xs text-gray-500 mt-1 line-clamp-2">বিবরণ লোড হচ্ছে...</p>
+                        <p id="modalPDesc" class="text-xs text-gray-500 mt-1 line-clamp-2">...</p>
                     </div>
                 </div>
-
                 <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
                         <input type="text" id="cusName" required placeholder="আপনার নাম *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full">
@@ -132,7 +147,6 @@
                     </div>
                     <textarea id="cusAddress" required placeholder="ডেলিভারি ঠিকানা *" rows="2" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full"></textarea>
                     <input type="text" id="cusSize" placeholder="সাইজ / কালার (অপশনাল)" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full">
-                    
                     <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
                         <span>WhatsApp-এ অর্ডার পাঠান</span> <i class="fab fa-whatsapp text-xl"></i>
                     </button>
@@ -164,16 +178,47 @@
         const db = getDatabase(app);
         let allProducts = [], selectedProduct = {};
 
+        // 1. Load Data
         onValue(query(ref(db, 'products'), limitToLast(100)), (snap) => {
             const data = snap.val();
             document.getElementById('loading').classList.add('hidden');
             if (data) {
                 allProducts = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
                 renderProducts('all');
+                
+                // 🔥 CHECK FOR DEEP LINK ID AFTER LOADING 🔥
+                checkDeepLink();
             } else {
                 document.getElementById('emptyMsg').classList.remove('hidden');
             }
         });
+
+        // 2. Deep Link Logic
+        function checkDeepLink() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            if (productId) {
+                // Find the product in the grid
+                setTimeout(() => {
+                    const targetElement = document.getElementById(`prod-${productId}`);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        targetElement.classList.add('highlight-product');
+                        showToast("আপনার কাঙ্ক্ষিত প্রোডাক্টটি এখানে!");
+                    }
+                }, 500); // Small delay to ensure rendering
+            }
+        }
+
+        // 3. Share Link Function
+        window.shareProduct = (id) => {
+            const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast("লিংক কপি হয়েছে! ফেসবুকে পেস্ট করুন।");
+            }).catch(() => {
+                prompt("লিংকটি কপি করুন:", url);
+            });
+        };
 
         window.filterProducts = (cat) => {
             document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
@@ -190,19 +235,24 @@
                 grid.classList.remove('hidden');
                 document.getElementById('emptyMsg').classList.add('hidden');
                 filtered.forEach(p => {
-                    // Safe strings
                     const safeName = p.name ? p.name.replace(/'/g, "\\'") : '';
                     const safeDesc = p.description ? p.description.replace(/'/g, "\\'").replace(/\n/g, " ") : '';
 
                     grid.innerHTML += `
-                        <div class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition border border-gray-100 overflow-hidden flex flex-col">
+                        <div id="prod-${p.id}" class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition border border-gray-100 overflow-hidden flex flex-col relative">
+                            
+                            <!-- 🔥 SHARE BUTTON ADDED 🔥 -->
+                            <button onclick="shareProduct('${p.id}')" class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur text-gray-700 w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:text-blue-600 transition" title="লিংক কপি করুন">
+                                <i class="fas fa-share-alt"></i>
+                            </button>
+
                             <div class="relative aspect-[3/4] bg-gray-50 overflow-hidden">
                                 <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase z-10">New</div>
                                 <img src="${p.image}" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             </div>
                             <div class="p-4 flex flex-col flex-grow">
                                 <h4 class="font-bold text-gray-900 line-clamp-1 mb-1">${p.name}</h4>
-                                <p class="text-xs text-gray-500 line-clamp-2 mb-2">${p.description || 'বিস্তারিত দেখুন...'}</p>
+                                <p class="text-xs text-gray-500 line-clamp-2 mb-2">${p.description || 'বিস্তারিত...'}</p>
                                 <div class="mt-auto pt-3 flex justify-between items-center border-t border-gray-50">
                                     <span class="text-brand-600 font-bold text-lg">৳${p.price}</span>
                                     <button onclick="openModal('${safeName}', '${p.price}', '${p.image}', '${safeDesc}')" class="bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center shadow hover:bg-brand-600 transition">
@@ -224,7 +274,7 @@
             document.getElementById('modalPName').innerText = name;
             document.getElementById('modalPPrice').innerText = `৳${price}`;
             document.getElementById('modalImg').src = image;
-            document.getElementById('modalPDesc').innerText = desc || "কোনো বিবরণ দেওয়া হয়নি।"; // Show description in modal
+            document.getElementById('modalPDesc').innerText = desc || "কোনো বিবরণ নেই।";
             document.getElementById('orderModal').classList.add('active');
             document.body.style.overflow = 'hidden';
         };
@@ -232,6 +282,13 @@
         window.closeModal = () => {
             document.getElementById('orderModal').classList.remove('active');
             document.body.style.overflow = 'auto';
+        };
+
+        window.showToast = (msg) => {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = msg;
+            toast.classList.remove('opacity-0');
+            setTimeout(() => toast.classList.add('opacity-0'), 3000);
         };
 
         window.submitOrder = (e) => {
@@ -244,4 +301,4 @@
         };
     </script>
 </body>
-                                          </html>
+    </html>
