@@ -340,4 +340,20 @@
             const toast = document.getElementById('toast');
             document.getElementById('toastMsg').innerText = msg;
             toast.classList.remove('opacity-0');
-            setTimeout(() => toast.classList.add('o
+            setTimeout(() => toast.classList.add('opacity-0'), 3000);
+        };
+
+        // 7. WhatsApp Order (Updated Currency)
+        window.submitOrder = (e) => {
+            e.preventDefault();
+            const form = document.getElementById('orderForm');
+            
+            const msg = `Hello! 👋 New Order / নতুন অর্ডার\n\n🛍️ Product: ${selectedProduct.name}\n💰 Price: ₹${selectedProduct.price}\n\n👤 Name: ${form.cusName.value}\n📱 Phone: ${form.cusPhone.value}\n📍 Address: ${form.cusAddress.value}\n📏 Size/Color: ${form.cusSize.value || 'N/A'}`;
+            
+            window.open(`https://wa.me/916291767175?text=${encodeURIComponent(msg)}`, '_blank');
+            closeModal();
+            form.reset();
+        };
+    </script>
+</body>
+</html>
