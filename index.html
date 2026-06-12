@@ -83,15 +83,6 @@
         </div>
     </div>
 
-    <!-- TOP ADS -->
-    <div class="max-w-7xl mx-auto px-4 py-6 text-center mt-6">
-        <div class="flex flex-col justify-center items-center bg-white border border-gray-100 rounded-lg p-4 shadow-sm">
-            <p class="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Sponsored</p>
-            <script async="async" data-cfasync="false" src="//needfullabor.com/b3f195a633abb469174f8a495b8e98b9/invoke.js"></script>
-            <div id="container-b3f195a633abb469174f8a495b8e98b9"></div>
-        </div>
-    </div>
-
     <!-- Product Section -->
     <div id="shopSection" class="max-w-7xl mx-auto py-10 px-4">
         <div class="text-center mb-10">
@@ -124,17 +115,6 @@
         </div>
     </div>
 
-    <!-- BOTTOM ADS -->
-    <div class="max-w-7xl mx-auto px-4 py-8 text-center">
-        <div class="inline-block bg-white border border-gray-200 rounded-lg p-4">
-            <p class="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Advertisement</p>
-            <script type="text/javascript">
-                atOptions = { 'key' : 'a04ccb4cb6627256165e16c64ee3fb12', 'format' : 'iframe', 'height' : 250, 'width' : 300, 'params' : {} };
-            </script>
-            <script type="text/javascript" src="//needfullabor.com/a04ccb4cb6627256165e16c64ee3fb12/invoke.js"></script>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800 text-center">
         <h3 class="text-2xl font-bold font-serif mb-2">Fashion<span class="text-brand-500">Hub</span></h3>
@@ -143,67 +123,40 @@
         <div class="text-gray-600 text-xs">&copy; 2025 Fashion Hub. All Rights Reserved.</div>
     </footer>
 
-    <!-- ORDER MODAL (Bilingual & Fixed) -->
+    <!-- ORDER MODAL -->
     <div id="orderModal" class="modal fixed inset-0 z-[60] flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 overflow-y-auto">
         <div class="modal-content bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative">
-            <!-- Close Button -->
             <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:text-red-600 w-8 h-8 rounded-full z-10 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
-            
             <div class="bg-brand-600 p-6 text-white text-center">
                 <h3 class="font-bold text-xl font-serif">Confirm Order</h3>
                 <p class="text-brand-100 text-xs mt-1">অর্ডার কনফার্ম করুন</p>
             </div>
-            
             <div class="p-6">
-                <!-- Product Preview -->
                 <div class="flex gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100 mb-4">
                     <img id="modalImg" src="" class="w-16 h-16 object-cover rounded-lg border">
                     <div class="flex flex-col justify-center">
                         <h4 id="modalPName" class="font-bold text-gray-900 text-sm">Product Name</h4>
                         <p id="modalPPrice" class="text-brand-600 font-bold">Price</p>
-                        <p class="text-[10px] text-gray-400 mt-1">Selected Product / নির্বাচিত পণ্য</p>
                     </div>
                 </div>
-                
-                <!-- Bilingual Form -->
                 <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <input type="text" id="cusName" required placeholder="Your Name *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full focus:border-brand-500 outline-none">
-                            <span class="text-[10px] text-gray-400 ml-1">আপনার নাম</span>
-                        </div>
-                        <div>
-                            <input type="tel" id="cusPhone" required placeholder="Mobile Number *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full focus:border-brand-500 outline-none">
-                            <span class="text-[10px] text-gray-400 ml-1">মোবাইল নম্বর</span>
-                        </div>
+                        <input type="text" id="cusName" required placeholder="Name / নাম *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
+                        <input type="tel" id="cusPhone" required placeholder="Mobile / মোবাইল *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
                     </div>
-                    <div>
-                        <textarea id="cusAddress" required placeholder="Delivery Address *" rows="2" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full focus:border-brand-500 outline-none"></textarea>
-                        <span class="text-[10px] text-gray-400 ml-1">ডেলিভারি ঠিকানা</span>
-                    </div>
-                    <div>
-                        <input type="text" id="cusSize" placeholder="Size / Color (Optional)" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full focus:border-brand-500 outline-none">
-                        <span class="text-[10px] text-gray-400 ml-1">সাইজ / কালার (অপশনাল)</span>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg flex flex-col items-center justify-center leading-none transition">
-                        <div class="flex items-center gap-2">
-                            <span>Order via WhatsApp</span> <i class="fab fa-whatsapp text-lg"></i>
-                        </div>
-                        <span class="text-[10px] font-normal mt-1 opacity-90">WhatsApp-এ অর্ডার করুন</span>
+                    <textarea id="cusAddress" required placeholder="Address / ঠিকানা *" rows="2" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none"></textarea>
+                    <input type="text" id="cusSize" placeholder="Size/Color / সাইজ/কালার" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
+                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg flex flex-col items-center justify-center">
+                        <span>Order via WhatsApp</span>
+                        <span class="text-[10px] font-normal">WhatsApp-এ অর্ডার করুন</span>
                     </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Infolinks Ad -->
-    <script type="text/javascript"> var infolinks_pid = 3442091; var infolinks_wsid = 0; </script>
-    <script type="text/javascript" src="//resources.infolinks.com/js/infolinks_main.js"></script>
-
-    <!-- CORE LOGIC (Using Stable Firebase Version) -->
+    <!-- FIREBASE & LOGIC -->
     <script type="module">
-        // Using Stable Version 10.7.1
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getDatabase, ref, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
@@ -223,57 +176,20 @@
         window.allProducts = []; 
         let selectedProduct = {};
 
-        // 1. Load Data
         onValue(query(ref(db, 'products'), limitToLast(100)), (snap) => {
             const data = snap.val();
             document.getElementById('loading').classList.add('hidden');
             if (data) {
                 window.allProducts = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
                 renderProducts('all');
-                checkDeepLink();
             } else {
                 document.getElementById('emptyMsg').classList.remove('hidden');
             }
         });
 
-        // 2. Deep Link Check
-        function checkDeepLink() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const productId = urlParams.get('id');
-            if (productId) {
-                setTimeout(() => {
-                    const targetElement = document.getElementById(`prod-${productId}`);
-                    if (targetElement) {
-                        targetElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                        targetElement.classList.add('highlight-product');
-                        showToast("Product Found! / পণ্য পাওয়া গেছে!");
-                    }
-                }, 1000); 
-            }
-        }
-
-        // 3. Share Function
-        window.shareProduct = (id) => {
-            const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
-            navigator.clipboard.writeText(url).then(() => {
-                showToast("Link Copied! / লিংক কপি হয়েছে!");
-            }).catch(() => {
-                prompt("Copy Link / লিংকটি কপি করুন:", url);
-            });
-        };
-
-        // 4. Filter Function
-        window.filterProducts = (cat) => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${cat}`).classList.add('active');
-            renderProducts(cat);
-        };
-
-        // 5. Render Products
-        function renderProducts(cat) {
+        window.renderProducts = (cat) => {
             const grid = document.getElementById('productGrid');
             grid.innerHTML = '';
-            
             const filtered = window.allProducts.filter(p => cat === 'all' || (p.category && p.category.toLowerCase() === cat));
 
             if (filtered.length) {
@@ -281,78 +197,85 @@
                 document.getElementById('emptyMsg').classList.add('hidden');
                 
                 filtered.forEach(p => {
+                    // Out of Stock Logic Check
+                    const isOutOfStock = p.status === 'out' || p.stock === 'out';
+
                     grid.innerHTML += `
-                        <div id="prod-${p.id}" class="group bg-white rounded-2xl shadow-sm hover:shadow-2xl transition border border-gray-100 overflow-hidden flex flex-col relative">
+                        <div id="prod-${p.id}" class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col relative ${isOutOfStock ? 'opacity-75 grayscale-[0.5]' : 'hover:shadow-2xl transition'}">
                             
-                            <button onclick="shareProduct('${p.id}')" class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur text-gray-700 w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:text-blue-600 transition" title="Share / শেয়ার">
+                            <button onclick="shareProduct('${p.id}')" class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur text-gray-700 w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:text-blue-600 transition">
                                 <i class="fas fa-share-alt"></i>
                             </button>
 
                             <div class="relative aspect-[3/4] bg-gray-50 overflow-hidden">
-                                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase z-10">New</div>
-                                <img src="${p.image}" loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+                                ${isOutOfStock ? 
+                                    `<div class="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
+                                        <span class="bg-red-600 text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Out of Stock</span>
+                                    </div>` 
+                                    : `<div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase z-10">New</div>`
+                                }
+                                <img src="${p.image}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
                             </div>
+
                             <div class="p-4 flex flex-col flex-grow">
                                 <h4 class="font-bold text-gray-900 line-clamp-1 mb-1">${p.name}</h4>
-                                <p class="text-xs text-gray-500 line-clamp-2 mb-2">${p.description || 'Details inside... / বিস্তারিত ভিতরে...'}</p>
                                 <div class="mt-auto pt-3 flex justify-between items-center border-t border-gray-50">
                                     <span class="text-brand-600 font-bold text-lg">₹${p.price}</span>
                                     
-                                    <button onclick="openModal('${p.id}')" class="bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center shadow hover:bg-brand-600 transition">
-                                        <i class="fas fa-shopping-bag text-xs"></i>
-                                    </button>
+                                    ${isOutOfStock ? 
+                                        `<button disabled class="bg-gray-300 text-gray-500 w-8 h-8 rounded-full flex items-center justify-center cursor-not-allowed">
+                                            <i class="fas fa-times"></i>
+                                        </button>` 
+                                        : 
+                                        `<button onclick="openModal('${p.id}')" class="bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center shadow hover:bg-brand-600 transition">
+                                            <i class="fas fa-shopping-bag text-xs"></i>
+                                        </button>`
+                                    }
                                 </div>
                                 
-                                <button onclick="openModal('${p.id}')" class="mt-3 w-full md:hidden bg-brand-50 text-brand-700 font-bold py-2 rounded text-sm flex justify-center gap-1">
-                                    <span>Order Now</span> <span class="font-normal opacity-70">| অর্ডার করুন</span>
-                                </button>
+                                ${isOutOfStock ? 
+                                    `<button disabled class="mt-3 w-full bg-gray-200 text-gray-400 font-bold py-2 rounded text-xs cursor-not-allowed">স্টকে নেই</button>` 
+                                    : 
+                                    `<button onclick="openModal('${p.id}')" class="mt-3 w-full md:hidden bg-brand-50 text-brand-700 font-bold py-2 rounded text-sm">Order Now</button>`
+                                }
                             </div>
                         </div>`;
                 });
-            } else {
-                grid.classList.add('hidden');
-                document.getElementById('emptyMsg').classList.remove('hidden');
             }
-        }
+        };
 
-        // 6. Open Modal Function (Fixed Logic)
+        window.filterProducts = (cat) => {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`btn-${cat}`).classList.add('active');
+            renderProducts(cat);
+        };
+
         window.openModal = (id) => {
             const product = window.allProducts.find(p => p.id === id);
-            
             if (product) {
-                selectedProduct = { name: product.name, price: product.price };
-                
+                selectedProduct = product;
                 document.getElementById('modalPName').innerText = product.name;
                 document.getElementById('modalPPrice').innerText = `₹${product.price}`;
                 document.getElementById('modalImg').src = product.image;
-                
                 document.getElementById('orderModal').classList.add('active');
-                document.body.style.overflow = 'hidden';
             }
         };
 
-        window.closeModal = () => {
-            document.getElementById('orderModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
-        };
+        window.closeModal = () => document.getElementById('orderModal').classList.remove('active');
 
-        window.showToast = (msg) => {
-            const toast = document.getElementById('toast');
-            document.getElementById('toastMsg').innerText = msg;
-            toast.classList.remove('opacity-0');
-            setTimeout(() => toast.classList.add('opacity-0'), 3000);
-        };
-
-        // 7. WhatsApp Order (Updated Currency)
         window.submitOrder = (e) => {
             e.preventDefault();
             const form = document.getElementById('orderForm');
-            
-            const msg = `Hello! 👋 New Order / নতুন অর্ডার\n\n🛍️ Product: ${selectedProduct.name}\n💰 Price: ₹${selectedProduct.price}\n\n👤 Name: ${form.cusName.value}\n📱 Phone: ${form.cusPhone.value}\n📍 Address: ${form.cusAddress.value}\n📏 Size/Color: ${form.cusSize.value || 'N/A'}`;
-            
+            const msg = `Hello! New Order\nProduct: ${selectedProduct.name}\nPrice: ₹${selectedProduct.price}\nName: ${form.cusName.value}\nPhone: ${form.cusPhone.value}\nAddress: ${form.cusAddress.value}\nSize: ${form.cusSize.value || 'N/A'}`;
             window.open(`https://wa.me/916291767175?text=${encodeURIComponent(msg)}`, '_blank');
             closeModal();
             form.reset();
+        };
+
+        window.shareProduct = (id) => {
+            const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
+            navigator.clipboard.writeText(url);
+            alert("Link Copied!");
         };
     </script>
 </body>
