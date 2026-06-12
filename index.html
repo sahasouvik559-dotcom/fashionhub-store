@@ -3,162 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fashion Hub - Premium Store</title>
-    
-    <!-- Meta Tags -->
-    <meta property="og:title" content="Fashion Hub - Premium Collection">
-    <meta property="og:description" content="Best quality fashion at affordable prices. Order now!">
+    <title>Fashion Hub - Premium Collection 2026</title>
     
     <!-- Tailwind & Font Awesome -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <script>
-        tailwind.config = {
-            theme: { 
-                extend: { 
-                    fontFamily: { 
-                        sans: ['Plus Jakarta Sans', 'Hind Siliguri', 'sans-serif'], 
-                        serif: ['Playfair Display', 'serif'] 
-                    }, 
-                    colors: { brand: { 500: '#22c55e', 600: '#16a34a', 800: '#166534' } }, 
-                    animation: { 'bounce-slow': 'bounce 3s infinite' } 
-                } 
-            }
-        }
-    </script>
     <style>
-        .loader { width: 48px; height: 48px; border: 5px solid #FFF; border-bottom-color: #16a34a; border-radius: 50%; display: inline-block; animation: rotation 1s linear infinite; }
-        @keyframes rotation { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .modal { transition: all 0.3s ease-in-out; opacity: 0; visibility: hidden; }
-        .modal.active { opacity: 1; visibility: visible; }
-        .modal-content { transform: scale(0.9) translateY(20px); transition: all 0.3s ease-in-out; }
-        .modal.active .modal-content { transform: scale(1) translateY(0); }
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        .tab-btn.active { background-color: #16a34a; color: white; border-color: #16a34a; }
-        .highlight-product { border: 2px solid #16a34a !important; box-shadow: 0 0 20px rgba(22, 163, 74, 0.3) !important; transform: scale(1.02); transition: all 0.5s ease; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-serif { font-family: 'Playfair Display', serif; }
+        
+        .modal { transition: opacity 0.2s ease-in-out; visibility: hidden; opacity: 0; }
+        .modal.active { visibility: visible; opacity: 1; }
+        
+        .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(12px); }
+        
+        .skeleton { background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        @keyframes shimmer { 100% { background-position: -200% 0; } }
+        
+        .out-of-stock-overlay { background: rgba(0,0,0,0.45); backdrop-filter: blur(2px); }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased font-sans relative">
-
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed top-24 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white px-6 py-3 rounded-full shadow-2xl z-50 transition-opacity duration-300 opacity-0 pointer-events-none flex items-center gap-2">
-        <i class="fas fa-check-circle text-brand-500"></i> <span id="toastMsg">Success / সফল হয়েছে!</span>
-    </div>
-
-    <!-- WhatsApp Button -->
-    <a href="https://wa.me/916291767175" target="_blank" class="fixed top-24 right-4 z-40 bg-[#25D366] hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center transition hover:scale-110 animate-bounce-slow border-2 border-white">
-        <i class="fab fa-whatsapp text-3xl"></i>
-    </a>
+<body class="bg-gray-50 text-gray-800 antialiased">
 
     <!-- Navbar -->
-    <nav class="glass-nav fixed w-full z-50 top-0 border-b border-gray-100 shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 h-16 md:h-20 flex justify-between items-center">
+    <nav class="glass-nav fixed w-full z-50 top-0 border-b border-gray-100 shadow-sm h-16 flex items-center">
+        <div class="max-w-7xl mx-auto px-4 w-full flex justify-between items-center">
             <a href="?" class="flex items-center gap-2">
-                <div class="w-10 h-10 bg-brand-50 rounded-full flex items-center justify-center text-brand-600"><i class="fas fa-gem text-xl"></i></div>
-                <div><h1 class="text-xl font-bold font-serif text-gray-900 leading-none">Fashion<span class="text-brand-600">Hub</span></h1></div>
+                <div class="w-9 h-9 bg-green-600 rounded-xl flex items-center justify-center text-white shadow-lg"><i class="fas fa-gem"></i></div>
+                <h1 class="text-xl font-bold font-serif italic text-gray-900 leading-none">Fashion<span class="text-green-600">Hub</span></h1>
             </a>
-            <a href="https://wa.me/916291767175" class="flex items-center gap-2 bg-gray-900 hover:bg-brand-600 text-white px-5 py-2.5 rounded-full text-xs md:text-sm font-semibold transition shadow-lg text-center leading-tight">
-                <i class="fas fa-phone-alt"></i> <span>Helpline<br>হেল্পলাইন</span>
+            <a href="https://wa.me/916291767175" class="bg-gray-900 text-white px-5 py-2 rounded-full text-xs font-bold transition hover:bg-green-600 shadow-lg flex items-center gap-2">
+                <i class="fab fa-whatsapp"></i> Help / সাহায্য
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <div class="relative pt-32 pb-20 overflow-hidden bg-gray-900 text-white">
-        <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1920&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-40">
-        <div class="relative max-w-7xl mx-auto px-4 text-center md:text-left h-[300px] flex flex-col justify-center">
-            <span class="text-brand-400 font-bold tracking-wider uppercase text-sm mb-4">New Arrival 2025</span>
-            <h1 class="text-4xl md:text-7xl font-bold font-serif mb-6 leading-tight">
-                Your Style,<br>Our Elegance
-                <span class="block text-xl md:text-3xl mt-2 font-sans font-normal text-gray-300">আপনার স্টাইল, আমাদের আভিজাত্য</span>
-            </h1>
-            <button onclick="document.getElementById('shopSection').scrollIntoView({behavior: 'smooth'})" class="bg-brand-600 px-8 py-4 rounded-full font-bold shadow-xl hover:bg-brand-700 w-max mx-auto md:mx-0 flex flex-col items-center leading-none">
-                <span class="text-lg">Shop Now</span>
-                <span class="text-xs mt-1">কেনাকাটা করুন</span>
-            </button>
+    <div class="relative pt-16 h-[380px] flex items-center bg-gray-900 text-white overflow-hidden">
+        <img src="https://images.unsplash.com/photo-1441998856307-57b60b406c90?q=80&w=1200&auto=format&fit=crop" class="absolute inset-0 w-full h-full object-cover opacity-50" alt="Fashion Cover">
+        <div class="relative max-w-7xl mx-auto px-4">
+            <!-- Updated to 2026 -->
+            <span class="text-green-400 font-bold tracking-widest text-xs uppercase mb-3 block">New Collection 2026</span>
+            <h1 class="text-4xl md:text-6xl font-bold font-serif mb-4 leading-tight tracking-tight">Your Unique <br><span class="text-green-500 underline decoration-green-300">Style Statement.</span></h1>
+            <p class="text-gray-300 text-sm md:text-base mb-8 max-w-md">২০২৬ সালের লেটেস্ট এবং প্রিমিয়াম পোশাকের বিশাল কালেকশন।</p>
+            <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="bg-green-600 px-8 py-4 rounded-2xl font-bold shadow-xl shadow-green-900/30 hover:bg-green-700 transition active:scale-95">Start Shopping</button>
         </div>
     </div>
 
-    <!-- Product Section -->
-    <div id="shopSection" class="max-w-7xl mx-auto py-10 px-4">
-        <div class="text-center mb-10">
-            <h2 class="text-3xl font-bold font-serif text-gray-900">Our Collection</h2>
-            <p class="text-gray-500 text-sm mt-1">আমাদের কালেকশন</p>
-            
-            <div class="flex flex-wrap justify-center gap-3 mt-6">
-                <button onclick="filterProducts('all')" id="btn-all" class="tab-btn active px-6 py-2 rounded-full border border-gray-200 bg-white font-bold text-sm">
-                    All <span class="font-normal text-xs ml-1">| সব</span>
-                </button>
-                <button onclick="filterProducts('men')" id="btn-men" class="tab-btn px-6 py-2 rounded-full border border-gray-200 bg-white font-bold text-sm">
-                    Men <span class="font-normal text-xs ml-1">| ছেলেদের</span>
-                </button>
-                <button onclick="filterProducts('women')" id="btn-women" class="tab-btn px-6 py-2 rounded-full border border-gray-200 bg-white font-bold text-sm">
-                    Women <span class="font-normal text-xs ml-1">| মেয়েদের</span>
-                </button>
+    <!-- Product Grid Section -->
+    <div id="shop" class="max-w-7xl mx-auto py-12 px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-10 gap-6">
+            <h2 class="text-2xl font-bold font-serif text-gray-900 border-l-4 border-green-600 pl-4 uppercase tracking-tight">Latest Inventory</h2>
+            <div class="flex gap-1 bg-gray-200/50 p-1 rounded-2xl border border-gray-200">
+                <button onclick="filterProducts('all')" id="btn-all" class="cat-btn px-6 py-2.5 rounded-xl text-xs font-bold transition bg-gray-900 text-white shadow-md">All</button>
+                <button onclick="filterProducts('men')" id="btn-men" class="cat-btn px-6 py-2.5 rounded-xl text-xs font-bold transition text-gray-500 hover:bg-white">Men</button>
+                <button onclick="filterProducts('women')" id="btn-women" class="cat-btn px-6 py-2.5 rounded-xl text-xs font-bold transition text-gray-500 hover:bg-white">Women</button>
             </div>
         </div>
 
-        <div id="loading" class="text-center py-12">
-            <span class="loader"></span>
-            <p class="mt-4 text-gray-500 text-sm">Loading... / লোড হচ্ছে...</p>
+        <!-- Skeleton Loader -->
+        <div id="loading" class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div class="h-72 skeleton rounded-[2.5rem]"></div><div class="h-72 skeleton rounded-[2.5rem]"></div>
+            <div class="h-72 skeleton rounded-[2.5rem] md:block hidden"></div><div class="h-72 skeleton rounded-[2.5rem] md:block hidden"></div>
         </div>
         
-        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 hidden"></div>
-        
-        <div id="emptyMsg" class="hidden text-center py-20 bg-white rounded-2xl border border-gray-100">
-            <p class="text-gray-500 font-bold">No Products Found</p>
-            <p class="text-gray-400 text-sm">কোনো পণ্য পাওয়া যায়নি</p>
-        </div>
+        <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"></div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800 text-center">
-        <h3 class="text-2xl font-bold font-serif mb-2">Fashion<span class="text-brand-500">Hub</span></h3>
-        <p class="text-gray-400 text-sm mb-1">Premium Quality, Best Price</p>
-        <p class="text-gray-500 text-xs mb-8">প্রিমিয়াম কোয়ালিটি, সেরা দাম</p>
-        <div class="text-gray-600 text-xs">&copy; 2025 Fashion Hub. All Rights Reserved.</div>
+    <footer class="bg-gray-950 text-white pt-16 pb-8 text-center border-t border-gray-900">
+        <h3 class="text-2xl font-bold font-serif mb-2 italic">Fashion<span class="text-green-500">Hub</span></h3>
+        <!-- Updated to 2026 -->
+        <p class="text-gray-500 text-xs uppercase tracking-widest mb-8 font-bold">The Premium Wardrobe 2026</p>
+        <div class="text-gray-700 text-[10px]">&copy; 2026 Fashion Hub. Designed for Elegance.</div>
     </footer>
 
     <!-- ORDER MODAL -->
-    <div id="orderModal" class="modal fixed inset-0 z-[60] flex items-center justify-center bg-gray-900/80 backdrop-blur-sm p-4 overflow-y-auto">
-        <div class="modal-content bg-white w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative">
-            <button onclick="closeModal()" class="absolute top-4 right-4 bg-gray-100 hover:text-red-600 w-8 h-8 rounded-full z-10 flex items-center justify-center transition"><i class="fas fa-times"></i></button>
-            <div class="bg-brand-600 p-6 text-white text-center">
-                <h3 class="font-bold text-xl font-serif">Confirm Order</h3>
-                <p class="text-brand-100 text-xs mt-1">অর্ডার কনফার্ম করুন</p>
-            </div>
-            <div class="p-6">
-                <div class="flex gap-4 bg-gray-50 p-4 rounded-xl border border-gray-100 mb-4">
-                    <img id="modalImg" src="" class="w-16 h-16 object-cover rounded-lg border">
+    <div id="orderModal" class="modal fixed inset-0 z-[60] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+        <div class="bg-white w-full max-w-lg rounded-[2.5rem] overflow-hidden relative shadow-2xl border border-gray-100 my-auto">
+            <div class="p-8">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-bold text-2xl font-serif italic text-gray-800">Order Product</h3>
+                    <button onclick="closeModal()" class="w-10 h-10 bg-gray-50 text-gray-400 hover:text-red-500 rounded-full flex items-center justify-center transition"><i class="fas fa-times"></i></button>
+                </div>
+
+                <div class="flex gap-5 mb-8 bg-green-50/50 p-5 rounded-3xl border border-green-100">
+                    <img id="modalImg" src="" class="w-20 h-20 object-cover rounded-2xl shadow-md border-2 border-white">
                     <div class="flex flex-col justify-center">
-                        <h4 id="modalPName" class="font-bold text-gray-900 text-sm">Product Name</h4>
-                        <p id="modalPPrice" class="text-brand-600 font-bold">Price</p>
+                        <h4 id="modalPName" class="font-bold text-gray-800 leading-tight text-lg"></h4>
+                        <p id="modalPPrice" class="text-green-600 font-bold text-xl mt-1"></p>
                     </div>
                 </div>
+
                 <form id="orderForm" onsubmit="submitOrder(event)" class="space-y-4">
                     <div class="grid grid-cols-2 gap-4">
-                        <input type="text" id="cusName" required placeholder="Name / নাম *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
-                        <input type="tel" id="cusPhone" required placeholder="Mobile / মোবাইল *" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase mb-1 block ml-2">Size / সাইজ</label>
+                            <select id="cusSize" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-600 transition">
+                                <option value="S">Small (S)</option>
+                                <option value="M" selected>Medium (M)</option>
+                                <option value="L">Large (L)</option>
+                                <option value="XL">Extra Large (XL)</option>
+                                <option value="XXL">XXL</option>
+                                <option value="Standard">Standard</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-gray-400 uppercase mb-1 block ml-2">Color / কালার</label>
+                            <input type="text" id="cusColor" placeholder="Red, Black etc." class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-600 transition">
+                        </div>
                     </div>
-                    <textarea id="cusAddress" required placeholder="Address / ঠিকানা *" rows="2" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none"></textarea>
-                    <input type="text" id="cusSize" placeholder="Size/Color / সাইজ/কালার" class="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 text-sm w-full outline-none">
-                    <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-3 rounded-xl shadow-lg flex flex-col items-center justify-center">
-                        <span>Order via WhatsApp</span>
-                        <span class="text-[10px] font-normal">WhatsApp-এ অর্ডার করুন</span>
+
+                    <input type="text" id="cusName" required placeholder="Full Name / আপনার নাম" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-600 transition">
+                    <input type="tel" id="cusPhone" required placeholder="Phone Number / ফোন নম্বর" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-600 transition">
+                    <textarea id="cusAddress" required placeholder="Full Delivery Address / ডেলিভারি ঠিকানা" class="w-full bg-gray-50 border border-gray-200 rounded-2xl px-4 py-3 text-sm outline-none focus:border-green-600 transition min-h-[90px]"></textarea>
+                    
+                    <button type="submit" class="w-full bg-green-600 text-white font-bold py-4 rounded-2xl shadow-xl shadow-green-900/30 hover:bg-green-700 transition-all flex items-center justify-center gap-3 active:scale-95">
+                        <i class="fab fa-whatsapp text-xl"></i>
+                        Confirm via WhatsApp
                     </button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- FIREBASE & LOGIC -->
+    <!-- Logic -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getDatabase, ref, onValue, query, limitToLast } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAkLS6VAGLk0z5K5LaHBlUWKf8HRmRZ3jc",
@@ -173,109 +149,89 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
         
-        window.allProducts = []; 
-        let selectedProduct = {};
+        window.allProducts = [];
 
-        onValue(query(ref(db, 'products'), limitToLast(100)), (snap) => {
+        onValue(ref(db, 'products'), (snap) => {
             const data = snap.val();
-            document.getElementById('loading').classList.add('hidden');
+            const loading = document.getElementById('loading');
+            
             if (data) {
                 window.allProducts = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
                 renderProducts('all');
+                if (loading) loading.classList.add('hidden');
             } else {
-                document.getElementById('emptyMsg').classList.remove('hidden');
+                document.getElementById('productGrid').innerHTML = '<p class="col-span-full text-center py-20 text-gray-400 italic">No products available at the moment.</p>';
+                if (loading) loading.classList.add('hidden');
             }
         });
 
         window.renderProducts = (cat) => {
             const grid = document.getElementById('productGrid');
-            grid.innerHTML = '';
-            const filtered = window.allProducts.filter(p => cat === 'all' || (p.category && p.category.toLowerCase() === cat));
+            let htmlBuffer = '';
+            
+            const filtered = window.allProducts.filter(p => {
+                if (cat === 'all') return true;
+                return p.category && p.category.toLowerCase() === cat.toLowerCase();
+            });
 
-            if (filtered.length) {
-                grid.classList.remove('hidden');
-                document.getElementById('emptyMsg').classList.add('hidden');
-                
-                filtered.forEach(p => {
-                    // Out of Stock Logic Check
-                    const isOutOfStock = p.status === 'out' || p.stock === 'out';
-
-                    grid.innerHTML += `
-                        <div id="prod-${p.id}" class="group bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col relative ${isOutOfStock ? 'opacity-75 grayscale-[0.5]' : 'hover:shadow-2xl transition'}">
-                            
-                            <button onclick="shareProduct('${p.id}')" class="absolute top-3 right-3 z-20 bg-white/90 backdrop-blur text-gray-700 w-8 h-8 rounded-full flex items-center justify-center shadow-lg hover:text-blue-600 transition">
-                                <i class="fas fa-share-alt"></i>
-                            </button>
-
-                            <div class="relative aspect-[3/4] bg-gray-50 overflow-hidden">
-                                ${isOutOfStock ? 
-                                    `<div class="absolute inset-0 bg-black/40 z-10 flex items-center justify-center">
-                                        <span class="bg-red-600 text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Out of Stock</span>
-                                    </div>` 
-                                    : `<div class="absolute top-3 left-3 bg-white/90 backdrop-blur px-2 py-1 rounded text-[10px] font-bold uppercase z-10">New</div>`
-                                }
-                                <img src="${p.image}" class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition duration-700">
+            filtered.forEach(p => {
+                const isOut = p.status === 'out';
+                htmlBuffer += `
+                    <div class="bg-white rounded-[2.5rem] shadow-sm border border-gray-100 overflow-hidden flex flex-col relative group transition-all hover:shadow-2xl duration-500">
+                        <div class="relative aspect-[4/5] bg-gray-100 overflow-hidden">
+                            ${isOut ? `<div class="absolute inset-0 z-10 out-of-stock-overlay flex items-center justify-center"><span class="bg-red-600 text-white text-[10px] font-bold px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">Not in Stock</span></div>` : ''}
+                            <img src="${p.image}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ${isOut ? 'grayscale scale-105' : 'group-hover:scale-110'}">
+                        </div>
+                        <div class="p-5 md:p-6 flex flex-col flex-grow">
+                            <h4 class="font-bold text-gray-800 text-sm mb-3 line-clamp-1 group-hover:text-green-600 transition-colors">${p.name}</h4>
+                            <div class="mt-auto flex justify-between items-center">
+                                <span class="text-green-600 font-bold text-xl">₹${p.price}</span>
+                                <button ${isOut ? 'disabled' : `onclick="openModal('${p.id}')"`} class="w-11 h-11 rounded-2xl bg-gray-900 text-white flex items-center justify-center transition-all shadow-xl shadow-gray-400/20 hover:bg-green-600 active:scale-90">
+                                    <i class="fas ${isOut ? 'fa-ban' : 'fa-shopping-cart'} text-sm"></i>
+                                </button>
                             </div>
-
-                            <div class="p-4 flex flex-col flex-grow">
-                                <h4 class="font-bold text-gray-900 line-clamp-1 mb-1">${p.name}</h4>
-                                <div class="mt-auto pt-3 flex justify-between items-center border-t border-gray-50">
-                                    <span class="text-brand-600 font-bold text-lg">₹${p.price}</span>
-                                    
-                                    ${isOutOfStock ? 
-                                        `<button disabled class="bg-gray-300 text-gray-500 w-8 h-8 rounded-full flex items-center justify-center cursor-not-allowed">
-                                            <i class="fas fa-times"></i>
-                                        </button>` 
-                                        : 
-                                        `<button onclick="openModal('${p.id}')" class="bg-gray-900 text-white w-8 h-8 rounded-full flex items-center justify-center shadow hover:bg-brand-600 transition">
-                                            <i class="fas fa-shopping-bag text-xs"></i>
-                                        </button>`
-                                    }
-                                </div>
-                                
-                                ${isOutOfStock ? 
-                                    `<button disabled class="mt-3 w-full bg-gray-200 text-gray-400 font-bold py-2 rounded text-xs cursor-not-allowed">স্টকে নেই</button>` 
-                                    : 
-                                    `<button onclick="openModal('${p.id}')" class="mt-3 w-full md:hidden bg-brand-50 text-brand-700 font-bold py-2 rounded text-sm">Order Now</button>`
-                                }
-                            </div>
-                        </div>`;
-                });
-            }
+                        </div>
+                    </div>`;
+            });
+            grid.innerHTML = htmlBuffer;
         };
 
         window.filterProducts = (cat) => {
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(`btn-${cat}`).classList.add('active');
+            document.querySelectorAll('.cat-btn').forEach(b => {
+                b.classList.remove('bg-gray-900', 'text-white', 'shadow-md');
+                b.classList.add('text-gray-500');
+            });
+            event.currentTarget.classList.add('bg-gray-900', 'text-white', 'shadow-md');
+            event.currentTarget.classList.remove('text-gray-500');
             renderProducts(cat);
         };
 
+        let currentP = null;
         window.openModal = (id) => {
-            const product = window.allProducts.find(p => p.id === id);
-            if (product) {
-                selectedProduct = product;
-                document.getElementById('modalPName').innerText = product.name;
-                document.getElementById('modalPPrice').innerText = `₹${product.price}`;
-                document.getElementById('modalImg').src = product.image;
-                document.getElementById('orderModal').classList.add('active');
-            }
+            currentP = window.allProducts.find(x => x.id === id);
+            document.getElementById('modalPName').innerText = currentP.name;
+            document.getElementById('modalPPrice').innerText = `₹${currentP.price}`;
+            document.getElementById('modalImg').src = currentP.image;
+            document.getElementById('orderModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         };
 
-        window.closeModal = () => document.getElementById('orderModal').classList.remove('active');
+        window.closeModal = () => {
+            document.getElementById('orderModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
 
         window.submitOrder = (e) => {
             e.preventDefault();
-            const form = document.getElementById('orderForm');
-            const msg = `Hello! New Order\nProduct: ${selectedProduct.name}\nPrice: ₹${selectedProduct.price}\nName: ${form.cusName.value}\nPhone: ${form.cusPhone.value}\nAddress: ${form.cusAddress.value}\nSize: ${form.cusSize.value || 'N/A'}`;
-            window.open(`https://wa.me/916291767175?text=${encodeURIComponent(msg)}`, '_blank');
-            closeModal();
-            form.reset();
-        };
-
-        window.shareProduct = (id) => {
-            const url = `${window.location.origin}${window.location.pathname}?id=${id}`;
-            navigator.clipboard.writeText(url);
-            alert("Link Copied!");
+            const waMsg = `🛍️ *NEW ORDER - FASHION HUB 2026*\n` +
+                        `👕 *Product:* ${currentP.name}\n` +
+                        `💰 *Price:* ₹${currentP.price}\n` +
+                        `📏 *Size:* ${document.getElementById('cusSize').value}\n` +
+                        `🎨 *Color:* ${document.getElementById('cusColor').value || 'Default'}\n\n` +
+                        `👤 *Customer:* ${document.getElementById('cusName').value}\n` +
+                        `📞 *Phone:* ${document.getElementById('cusPhone').value}\n` +
+                        `📍 *Address:* ${document.getElementById('cusAddress').value}`;
+            window.open(`https://wa.me/916291767175?text=${encodeURIComponent(waMsg)}`, '_blank');
         };
     </script>
 </body>
