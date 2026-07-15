@@ -40,6 +40,9 @@
 
     .modal { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); visibility: hidden; opacity: 0; transform: translateY(20px); }  
     .modal.active { visibility: visible; opacity: 1; transform: translateY(0); }  
+
+    /* Image Preview Lightbox */
+    #imageLightbox.active { visibility: visible; opacity: 1; }
       
     .no-scrollbar::-webkit-scrollbar { display: none; }  
     .skeleton { background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }  
@@ -51,6 +54,12 @@
 <div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] bg-emerald-950 text-white px-8 py-4 rounded-full shadow-2xl transition-all duration-500 opacity-0 pointer-events-none flex items-center gap-3">  
     <i class="fas fa-link text-emerald-400"></i> <span id="toastMsg" class="font-semibold text-sm">Link Copied!</span>  
 </div>  
+
+<!-- Image Preview Lightbox (New) -->
+<div id="imageLightbox" onclick="this.classList.remove('active')" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-sm invisible opacity-0 transition-all duration-300 flex items-center justify-center p-4 cursor-zoom-out">
+    <button class="absolute top-6 right-6 text-white text-3xl"><i class="fas fa-times"></i></button>
+    <img id="lightboxImg" src="" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-500">
+</div>
 
 <!-- Navigation -->  
 <nav class="glass-nav fixed w-full z-50 top-0 h-16 flex items-center border-b border-stone-100">  
@@ -69,7 +78,6 @@
 <div class="relative pt-16 h-[400px] flex items-center hero-bg text-white">  
     <div class="relative max-w-7xl mx-auto px-6 w-full text-center md:text-left">  
         <span class="text-emerald-400 font-bold tracking-[0.3em] text-xs uppercase mb-3 block">Boutique 2026 Collection</span>  
-        <!-- সংশোধিত অংশ: বাংলা লেখার ঠিক নিচে ইংরেজি টেক্সট যোগ করা হয়েছে -->
         <h1 class="text-4xl md:text-6xl font-bold font-serif mb-6 leading-tight">
             সেরা ফ্যাশন ও <br>নতুন ইলেকট্রনিক্স
             <span class="block text-lg md:text-2xl font-sans mt-2 opacity-90 font-medium">Best Fashion & New Electronics</span>
@@ -78,21 +86,18 @@
     </div>  
 </div>  
 
-<!-- 🔥 Features Section Added Here -->
+<!-- 🔥 Features Section -->
 <div class="max-w-7xl mx-auto px-6 mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-    <!-- Feature 1 -->
     <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all">
         <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-2xl mb-4">🛍️</div>
         <h3 class="text-sm font-bold text-emerald-950 mb-1">খুব সাশ্রয়ী দামে প্রোডাক্ট কিনুন।</h3>
         <p class="text-[10px] text-stone-500 uppercase tracking-widest">Buy Premium Products at Affordable Prices.</p>
     </div>
-    <!-- Feature 2 -->
     <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all">
         <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-2xl mb-4">💳</div>
         <h3 class="text-sm font-bold text-emerald-950 mb-1">ক্যাশ অন ডেলিভারি (COD) সুবিধা।</h3>
         <p class="text-[10px] text-stone-500 uppercase tracking-widest">Cash on Delivery (COD) Available.</p>
     </div>
-    <!-- Feature 3 -->
     <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm hover:shadow-md transition-all">
         <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-2xl mb-4">🔄</div>
         <h3 class="text-sm font-bold text-emerald-950 mb-1">সহজ ও ঝামেলামুক্ত প্রোডাক্ট এক্সচেঞ্জ।</h3>
@@ -128,11 +133,11 @@
                 <button onclick="closeModal()" class="w-10 h-10 bg-stone-50 text-stone-400 rounded-full flex items-center justify-center hover:text-red-500 transition-all"><i class="fas fa-times"></i></button>  
             </div>  
               
-            <div class="flex gap-4 mb-6 bg-stone-50 p-4 rounded-3xl border border-stone-100">  
-                <img id="modalImg" src="" class="w-16 h-16 object-cover rounded-2xl shadow-md border-2 border-white">  
-                <div class="flex flex-col justify-center">  
-                    <h4 id="modalPName" class="font-bold text-emerald-950 text-xs md:text-sm leading-tight line-clamp-1"></h4>  
-                    <p id="modalPPrice" class="text-emerald-600 font-bold text-xl mt-1"></p>  
+            <div class="flex gap-4 mb-6 bg-stone-50 p-4 rounded-3xl border border-stone-100 items-start">  
+                <img id="modalImg" src="" onclick="window.previewImage(this.src)" class="w-24 h-24 object-cover rounded-2xl shadow-md border-2 border-white cursor-zoom-in">  
+                <div class="flex flex-col justify-start">  
+                    <h4 id="modalPName" class="font-bold text-emerald-950 text-sm md:text-base leading-tight"></h4>  
+                    <p id="modalPPrice" class="text-emerald-600 font-bold text-xl mt-2"></p>  
                 </div>  
             </div>  
 
@@ -199,6 +204,13 @@
         }  
     });  
 
+    window.previewImage = (url) => {
+        const lightbox = document.getElementById('imageLightbox');
+        const img = document.getElementById('lightboxImg');
+        img.src = url;
+        lightbox.classList.add('active');
+    };
+
     window.renderProducts = (cat) => {  
         const grid = document.getElementById('productGrid');  
         let html = '';  
@@ -212,13 +224,13 @@
                     <button onclick="window.copyProductLink('${p.id}')" class="absolute top-5 right-5 z-30 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg text-emerald-950 hover:bg-emerald-600 hover:text-white transition-all">  
                         <i class="fas fa-link text-[11px]"></i>  
                     </button>  
-                    <div class="relative aspect-[4/5] bg-stone-50 overflow-hidden">  
+                    <div class="relative aspect-[4/5] bg-stone-50 overflow-hidden cursor-zoom-in" onclick="window.previewImage('${p.image}')">  
                         ${isOut ? `<div class="absolute inset-0 z-10 bg-emerald-950/60 backdrop-blur-sm flex items-center justify-center font-bold text-white text-[9px] uppercase tracking-widest px-4 text-center">Out of Stock</div>` : ''}  
                         <img src="${img}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ${isOut ? 'grayscale' : 'group-hover:scale-105'}">  
                     </div>  
                     <div class="p-6 flex flex-col flex-grow">  
                         <span class="text-[8px] font-bold text-emerald-600 uppercase tracking-widest mb-2">${p.category}</span>  
-                        <h4 class="font-bold text-emerald-950 text-[11px] mb-4 line-clamp-1">${p.name}</h4>  
+                        <h4 class="font-bold text-emerald-950 text-sm mb-4 leading-snug">${p.name}</h4>  
                         <div class="mt-auto flex justify-between items-center">  
                             <span class="text-emerald-950 font-bold text-lg">₹${p.price}</span>  
                             <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-10 h-10 rounded-xl ${isOut ? 'bg-stone-100 text-stone-300' : 'bg-emerald-950 text-white shadow-xl'} flex items-center justify-center transition-all active:scale-90"><i class="fas ${isOut ? 'fa-ban' : 'fa-shopping-bag'} text-xs"></i></button>  
@@ -229,12 +241,9 @@
         grid.innerHTML = html;  
     };  
 
-    // 🔥 উন্নত লিংক কপি ফাংশন (সব ব্রাউজারে কাজ করবে)  
     window.copyProductLink = (id) => {  
         const baseUrl = window.location.origin + window.location.pathname;  
         const shareUrl = baseUrl + '?id=' + id;  
-          
-        // আধুনিক পদ্ধতি  
         if (navigator.clipboard && window.isSecureContext) {  
             navigator.clipboard.writeText(shareUrl).then(() => {  
                 showToast("Link Copied!");  
