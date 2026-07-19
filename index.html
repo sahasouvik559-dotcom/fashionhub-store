@@ -15,7 +15,6 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; scroll-behavior: smooth; }
     .font-serif { font-family: 'Playfair Display', serif; }
       
-    /* Hero Background */
     .hero-bg {
         background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
         url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop');
@@ -24,7 +23,6 @@
 
     .glass-nav { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
       
-    /* Magic Focus Animation */
     @keyframes findProduct {
         0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(6, 78, 59, 0.7); border: 4px solid #064e3b; }
         30% { transform: scale(1.1); box-shadow: 0 0 70px 30px rgba(212, 175, 55, 0.4); border: 4px solid #d4af37; }
@@ -46,7 +44,7 @@
 
     @keyframes bounce { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -5px); } }
 
-    .modal { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); visibility: hidden; opacity: 0; transform: translateY(20px); }
+    .modal { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); visibility: hidden; opacity: 0; transform: translateY(20px); position: fixed; inset: 0; z-index: 100; }
     .modal.active { visibility: visible; opacity: 1; transform: translateY(0); }
 
     #imageLightbox.active { visibility: visible; opacity: 1; }
@@ -59,14 +57,14 @@
 <body class="antialiased">
 
 <!-- Toast Notification -->
-<div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[100] bg-emerald-950 text-white px-8 py-4 rounded-full shadow-2xl transition-all duration-500 opacity-0 pointer-events-none flex items-center gap-3">
+<div id="toast" class="fixed top-24 left-1/2 -translate-x-1/2 z-[110] bg-emerald-950 text-white px-8 py-4 rounded-full shadow-2xl transition-all duration-500 opacity-0 pointer-events-none flex items-center gap-3">
     <i class="fas fa-link text-emerald-400"></i> <span id="toastMsg" class="font-semibold text-sm">Link Copied!</span>
 </div>
 
 <!-- Image Preview Lightbox -->
-<div id="imageLightbox" onclick="this.classList.remove('active')" class="fixed inset-0 z-[110] bg-black/90 backdrop-blur-sm invisible opacity-0 transition-all duration-300 flex items-center justify-center p-4 cursor-zoom-out">
+<div id="imageLightbox" onclick="this.classList.remove('active')" class="fixed inset-0 z-[120] bg-black/90 backdrop-blur-sm invisible opacity-0 transition-all duration-300 flex items-center justify-center p-4 cursor-zoom-out">
     <button class="absolute top-6 right-6 text-white text-3xl"><i class="fas fa-times"></i></button>
-    <img id="lightboxImg" src="" class="max-w-full max-h-full rounded-lg shadow-2xl transition-transform duration-500">
+    <img id="lightboxImg" src="" class="max-w-full max-h-full rounded-lg shadow-2xl">
 </div>
 
 <!-- Navigation -->
@@ -88,9 +86,8 @@
         <span class="text-emerald-400 font-bold tracking-[0.3em] text-xs uppercase mb-3 block">Boutique 2026 Collection</span>
         <h1 class="text-4xl md:text-6xl font-bold font-serif mb-6 leading-tight">
             সেরা ফ্যাশন ও <br>নতুন ইলেকট্রনিক্স
-            <span class="block text-lg md:text-2xl font-sans mt-2 opacity-90 font-medium">Best Fashion & New Electronics</span>
         </h1>
-        <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="bg-emerald-600 px-10 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl hover:scale-105 transition-all">কালেকশন দেখুন</button>
+        <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="bg-emerald-600 px-10 py-4 rounded-full font-bold text-[10px] uppercase tracking-widest shadow-xl">কালেকশন দেখুন</button>
     </div>
 </div>
 
@@ -116,13 +113,13 @@
 <!-- ADS SECTION START -->
 <div class="max-w-7xl mx-auto px-6 mt-12 flex flex-col md:flex-row items-center justify-center gap-8">
     <!-- Ad Code 1 -->
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center bg-stone-50 rounded-3xl p-4 overflow-hidden border border-stone-100">
         <script async="async" data-cfasync="false" src="https://eliminatedfertilizer.com/2da14969d3a54865dc829ebf15bfd520/invoke.js"></script>
         <div id="container-2da14969d3a54865dc829ebf15bfd520"></div>
     </div>
 
     <!-- Ad Code 2 -->
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center bg-stone-50 rounded-3xl p-4 overflow-hidden border border-stone-100">
         <script type="text/javascript">
             atOptions = {
                 'key' : '41ecde8a4b7d21703af0d5cf2086e7e9',
@@ -138,14 +135,14 @@
 <!-- ADS SECTION END -->
 
 <!-- Shop Section -->
-<div id="shop" class="max-w-7xl mx-auto pt-12 px-6">
+<div id="shop" class="max-w-7xl mx-auto pt-12 px-6 pb-20">
     <div class="flex flex-col items-center mb-10">
         <h2 class="text-2xl font-bold font-serif text-emerald-950 mb-6 uppercase tracking-widest">Categories</h2>
         <div class="flex gap-2 bg-stone-100 p-1.5 rounded-2xl border border-stone-200 overflow-x-auto no-scrollbar w-full max-w-3xl">
-            <button onclick="filterProducts('all')" id="btn-all" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all bg-emerald-950 text-white shadow-md">All Items</button>
-            <button onclick="filterProducts('men')" id="btn-men" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Men</button>
-            <button onclick="filterProducts('women')" id="btn-women" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Women</button>
-            <button onclick="filterProducts('electronics')" id="btn-electronics" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Electronics</button>
+            <button onclick="window.filterProducts('all')" id="btn-all" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all bg-emerald-950 text-white shadow-md">All Items</button>
+            <button onclick="window.filterProducts('men')" id="btn-men" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Men</button>
+            <button onclick="window.filterProducts('women')" id="btn-women" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Women</button>
+            <button onclick="window.filterProducts('electronics')" id="btn-electronics" class="cat-btn whitespace-nowrap px-8 py-3.5 rounded-xl text-[10px] font-bold uppercase tracking-widest transition-all text-stone-500">Electronics</button>
         </div>
     </div>
 
@@ -154,50 +151,43 @@
         <div class="h-80 skeleton rounded-[2.5rem]"></div>
     </div>
       
-    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10 min-h-[400px]"></div>
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10"></div>
 </div>
 
 <!-- Order Modal -->
-<div id="orderModal" class="modal fixed inset-0 z-[60] flex items-center justify-center bg-emerald-950/20 backdrop-blur-md p-4 overflow-y-auto">
-    <div class="bg-white w-full max-w-lg rounded-[3rem] overflow-hidden relative shadow-2xl my-auto">
+<div id="orderModal" class="modal bg-emerald-950/20 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-[3rem] overflow-hidden relative shadow-2xl max-h-[90vh] overflow-y-auto">
         <div class="p-8 md:p-10">
             <div class="flex justify-between items-center mb-6">
                 <h3 class="font-bold text-2xl font-serif text-emerald-950">Order Now</h3>
-                <button onclick="closeModal()" class="w-10 h-10 bg-stone-50 text-stone-400 rounded-full flex items-center justify-center hover:text-red-500 transition-all"><i class="fas fa-times"></i></button>
+                <button onclick="window.closeModal()" class="w-10 h-10 bg-stone-50 text-stone-400 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
             </div>
               
-            <div class="flex gap-4 mb-6 bg-stone-50 p-4 rounded-3xl border border-stone-100 items-start">
-                <img id="modalImg" src="" onclick="window.previewImage(this.src)" class="w-24 h-24 object-cover rounded-2xl shadow-md cursor-zoom-in">
+            <div class="flex gap-4 mb-6 bg-stone-50 p-4 rounded-3xl border border-stone-100">
+                <img id="modalImg" src="" class="w-20 h-20 object-cover rounded-2xl shadow-md">
                 <div>
-                    <h4 id="modalPName" class="font-bold text-emerald-950 text-sm md:text-base leading-tight"></h4>
-                    <p id="modalPPrice" class="text-emerald-600 font-bold text-xl mt-2"></p>
+                    <h4 id="modalPName" class="font-bold text-emerald-950 text-sm"></h4>
+                    <p id="modalPPrice" class="text-emerald-600 font-bold text-xl mt-1"></p>
                 </div>
             </div>
 
             <form id="orderForm" onsubmit="window.submitOrder(event)" class="space-y-4">
                 <div class="grid grid-cols-2 gap-4">
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-bold uppercase text-stone-400 ml-3">Size</label>
-                        <select id="cusSize" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs outline-none focus:border-emerald-600">
-                            <option value="Standard">Standard</option>
-                            <option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option>
-                        </select>
-                    </div>
-                    <div class="space-y-1">
-                        <label class="text-[9px] font-bold uppercase text-stone-400 ml-3">Color</label>
-                        <input type="text" id="cusColor" placeholder="e.g. Black" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs outline-none focus:border-emerald-600">
-                    </div>
+                    <select id="cusSize" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs">
+                        <option value="Standard">Standard Size</option>
+                        <option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option>
+                    </select>
+                    <input type="text" id="cusColor" placeholder="Color" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs">
                 </div>
-                <input type="text" id="cusName" required placeholder="আপনার নাম (Full Name)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs outline-none focus:border-emerald-600">
-                <input type="tel" id="cusPhone" required placeholder="মোবাইল নম্বর (WhatsApp)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs outline-none focus:border-emerald-600">
-                <textarea id="cusAddress" required placeholder="পূর্ণ ঠিকানা (Shipping Address)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs outline-none focus:border-emerald-600 min-h-[90px]"></textarea>
-                <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-xl text-[10px] uppercase tracking-widest shadow-xl hover:bg-emerald-800 transition-all">Confirm on WhatsApp</button>
+                <input type="text" id="cusName" required placeholder="আপনার নাম" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
+                <input type="tel" id="cusPhone" required placeholder="মোবাইল নম্বর" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
+                <textarea id="cusAddress" required placeholder="পূর্ণ ঠিকানা" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs min-h-[80px]"></textarea>
+                <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-xl text-[10px] uppercase tracking-widest shadow-xl">Confirm on WhatsApp</button>
             </form>
         </div>
     </div>
 </div>
 
-<!-- Scripts -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
     import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
@@ -215,62 +205,37 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
     window.allProducts = [];
+    window.currentP = null;
 
-    // ১. ডেটাবেস থেকে ডেটা ফেচ করা
     onValue(ref(db, 'products'), (snap) => {
         const data = snap.val();
+        const loading = document.getElementById('loading');
         if (data) {
             window.allProducts = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
-            
+            window.renderProducts('all');
+            if(loading) loading.style.display = 'none';
+
             const urlParams = new URLSearchParams(window.location.search);
             const productId = urlParams.get('id');
-            
-            renderProducts('all'); 
-            document.getElementById('loading').style.display = 'none';
-              
             if (productId) {
                 setTimeout(() => {
                     const target = document.getElementById('prod-' + productId);
                     if (target) {
                         target.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         target.classList.add('focused-product');
-                        if(!target.querySelector('.found-label')){
-                            const label = document.createElement('div');
-                            label.className = 'found-label';
-                            label.innerHTML = 'আপনার প্রোডাক্টটি এখানে <i class="fas fa-arrow-down ml-1"></i>';
-                            target.appendChild(label);
-                        }
+                        const label = document.createElement('div');
+                        label.className = 'found-label';
+                        label.innerHTML = 'আপনার প্রোডাক্ট <i class="fas fa-arrow-down ml-1"></i>';
+                        target.appendChild(label);
                     }
-                }, 1200);
+                }, 1000);
             }
+        } else {
+            document.getElementById('productGrid').innerHTML = "<p class='col-span-full text-center py-10'>কোন প্রোডাক্ট পাওয়া যায়নি।</p>";
+            if(loading) loading.style.display = 'none';
         }
     });
 
-    // ২. লিঙ্ক কপি করার উন্নত পদ্ধতি
-    window.copyProductLink = (id) => {
-        const baseUrl = window.location.protocol + '//' + window.location.host + window.location.pathname;
-        const shareUrl = `${baseUrl}?id=${id}`;
-
-        if (navigator.clipboard && window.isSecureContext) {
-            navigator.clipboard.writeText(shareUrl).then(() => {
-                showToast("Link Copied!");
-            }).catch(() => fallbackCopy(shareUrl));
-        } else {
-            fallbackCopy(shareUrl);
-        }
-    };
-
-    function fallbackCopy(text) {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "fixed"; textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.focus(); textArea.select();
-        try { document.execCommand('copy'); showToast("Link Copied!"); } catch (err) {}
-        document.body.removeChild(textArea);
-    }
-
-    // ৩. রেন্ডার প্রোডাক্টস
     window.renderProducts = (cat) => {
         const grid = document.getElementById('productGrid');
         let html = '';
@@ -278,22 +243,22 @@
 
         filtered.forEach(p => {
             const isOut = p.status === 'out';
-            const img = p.image.includes('unsplash') ? `${p.image}&q=60&w=600` : p.image;
             html += `
-                <div id="prod-${p.id}" class="bg-white rounded-[2rem] border border-stone-100 overflow-hidden flex flex-col relative group transition-all duration-500 hover:shadow-2xl">
-                    <button onclick="window.copyProductLink('${p.id}')" class="absolute top-5 right-5 z-30 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center shadow-lg text-emerald-950 hover:bg-emerald-600 hover:text-white transition-all">
-                        <i class="fas fa-link text-[11px]"></i>
+                <div id="prod-${p.id}" class="bg-white rounded-[2rem] border border-stone-100 overflow-hidden flex flex-col relative group hover:shadow-2xl transition-all duration-500">
+                    <button onclick="window.copyProductLink('${p.id}')" class="absolute top-4 right-4 z-10 w-8 h-8 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-emerald-950 shadow-md">
+                        <i class="fas fa-link text-[10px]"></i>
                     </button>
-                    <div class="relative aspect-[4/5] bg-stone-50 overflow-hidden cursor-zoom-in" onclick="window.previewImage('${p.image}')">
-                        ${isOut ? `<div class="absolute inset-0 z-10 bg-emerald-950/60 backdrop-blur-sm flex items-center justify-center font-bold text-white text-[9px] uppercase tracking-widest px-4">Out of Stock</div>` : ''}
-                        <img src="${img}" loading="lazy" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ${isOut ? 'grayscale' : 'group-hover:scale-105'}">
+                    <div class="relative aspect-[4/5] overflow-hidden cursor-zoom-in" onclick="window.previewImage('${p.image}')">
+                        ${isOut ? `<div class="absolute inset-0 z-10 bg-emerald-950/40 backdrop-blur-sm flex items-center justify-center text-white text-[10px] font-bold uppercase tracking-widest">Out of Stock</div>` : ''}
+                        <img src="${p.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ${isOut ? 'grayscale' : ''}">
                     </div>
-                    <div class="p-6 flex flex-col flex-grow">
-                        <span class="text-[8px] font-bold text-emerald-600 uppercase tracking-widest mb-2">${p.category}</span>
-                        <h4 class="font-bold text-emerald-950 text-sm mb-4 leading-snug">${p.name}</h4>
+                    <div class="p-5 flex flex-col flex-grow">
+                        <h4 class="font-bold text-emerald-950 text-sm mb-3 leading-snug">${p.name}</h4>
                         <div class="mt-auto flex justify-between items-center">
                             <span class="text-emerald-950 font-bold text-lg">₹${p.price}</span>
-                            <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-10 h-10 rounded-xl ${isOut ? 'bg-stone-100 text-stone-300' : 'bg-emerald-950 text-white shadow-xl'} flex items-center justify-center transition-all active:scale-90"><i class="fas ${isOut ? 'fa-ban' : 'fa-shopping-bag'} text-xs"></i></button>
+                            <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-10 h-10 rounded-xl ${isOut ? 'bg-stone-100' : 'bg-emerald-950 text-white shadow-lg'} flex items-center justify-center">
+                                <i class="fas fa-shopping-bag text-[10px]"></i>
+                            </button>
                         </div>
                     </div>
                 </div>`;
@@ -301,26 +266,34 @@
         grid.innerHTML = html;
     };
 
-    window.previewImage = (url) => {
-        const lightbox = document.getElementById('imageLightbox');
-        document.getElementById('lightboxImg').src = url;
-        lightbox.classList.add('active');
+    window.filterProducts = (cat) => {
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.classList.remove('bg-emerald-950', 'text-white', 'shadow-md');
+            btn.classList.add('text-stone-500');
+        });
+        const activeBtn = document.getElementById('btn-' + cat);
+        if(activeBtn) {
+            activeBtn.classList.add('bg-emerald-950', 'text-white', 'shadow-md');
+            activeBtn.classList.remove('text-stone-500');
+        }
+        window.renderProducts(cat);
+    };
+
+    window.copyProductLink = (id) => {
+        const url = window.location.origin + window.location.pathname + '?id=' + id;
+        navigator.clipboard.writeText(url).then(() => window.showToast("Link Copied!"));
     };
 
     window.showToast = (msg) => {
-        const toast = document.getElementById('toast');
+        const t = document.getElementById('toast');
         document.getElementById('toastMsg').innerText = msg;
-        toast.style.opacity = '1'; toast.style.pointerEvents = 'auto';
-        setTimeout(() => { toast.style.opacity = '0'; toast.style.pointerEvents = 'none'; }, 3000);
+        t.style.opacity = '1';
+        setTimeout(() => t.style.opacity = '0', 2500);
     };
 
-    window.filterProducts = (cat) => {
-        document.querySelectorAll('.cat-btn').forEach(b => {
-            b.classList.remove('bg-emerald-950', 'text-white', 'shadow-md');
-            b.classList.add('text-stone-500');
-        });
-        event.currentTarget.classList.add('bg-emerald-950', 'text-white', 'shadow-md');
-        renderProducts(cat);
+    window.previewImage = (url) => {
+        document.getElementById('lightboxImg').src = url;
+        document.getElementById('imageLightbox').classList.add('active');
     };
 
     window.openModal = (id) => {
@@ -340,9 +313,19 @@
 
     window.submitOrder = (e) => {
         e.preventDefault();
-        const pLink = window.location.protocol + '//' + window.location.host + window.location.pathname + '?id=' + window.currentP.id;
-        const waMsg = `🛍️ *NEW ORDER*\n\n📦 *Item:* ${window.currentP.name}\n💰 *Price:* ₹${window.currentP.price}\n📏 *Size:* ${document.getElementById('cusSize').value}\n🎨 *Color:* ${document.getElementById('cusColor').value || 'Default'}\n\n👤 *Customer:* ${document.getElementById('cusName').value}\n📞 *Mobile:* ${document.getElementById('cusPhone').value}\n📍 *Address:* ${document.getElementById('cusAddress').value}\n\n🛒 *Link:* ${pLink}`;
-        window.open(`https://wa.me/916291767175?text=${encodeURIComponent(waMsg)}`, '_blank');
+        const p = window.currentP;
+        const name = document.getElementById('cusName').value;
+        const phone = document.getElementById('cusPhone').value;
+        const address = document.getElementById('cusAddress').value;
+        const size = document.getElementById('cusSize').value;
+        const color = document.getElementById('cusColor').value;
+        
+        const pLink = window.location.origin + window.location.pathname + '?id=' + p.id;
+        
+        const msg = `New Order Request!%0A%0AProduct: ${p.name}%0APrice: ${p.price}%0ASize: ${size}%0AColor: ${color}%0A%0A--- Customer Details ---%0AName: ${name}%0APhone: ${phone}%0AAddress: ${address}%0A%0AProduct Link: ${pLink}`;
+        
+        window.open(`https://wa.me/916291767175?text=${msg}`, '_blank');
+        window.closeModal();
     };
 </script>
 
