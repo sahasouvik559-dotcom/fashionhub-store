@@ -160,7 +160,10 @@
     <div class="bg-white w-full max-w-lg rounded-[3rem] overflow-hidden relative shadow-2xl max-h-[90vh] overflow-y-auto">
         <div class="p-8 md:p-10">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="font-bold text-2xl font-serif text-emerald-950">Order Now</h3>
+                <div>
+                    <h3 class="font-bold text-2xl font-serif text-emerald-950">Order Now</h3>
+                    <p class="text-[10px] text-stone-500 uppercase tracking-widest">অর্ডার করতে নিচের তথ্য দিন</p>
+                </div>
                 <button onclick="window.closeModal()" class="w-10 h-10 bg-stone-50 text-stone-400 rounded-full flex items-center justify-center"><i class="fas fa-times"></i></button>
             </div>
               
@@ -175,14 +178,14 @@
             <form id="orderForm" onsubmit="window.submitOrder(event)" class="space-y-4">
                 <div class="grid grid-cols-2 gap-4">
                     <select id="cusSize" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs">
-                        <option value="Standard">Standard Size</option>
+                        <option value="Standard">Standard Size (সাইজ)</option>
                         <option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option>
                     </select>
-                    <input type="text" id="cusColor" placeholder="Color" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs">
+                    <input type="text" id="cusColor" placeholder="Color (রঙ)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-3.5 text-xs">
                 </div>
-                <input type="text" id="cusName" required placeholder="আপনার নাম" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
-                <input type="tel" id="cusPhone" required placeholder="মোবাইল নম্বর" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
-                <textarea id="cusAddress" required placeholder="পূর্ণ ঠিকানা" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs min-h-[80px]"></textarea>
+                <input type="text" id="cusName" required placeholder="আপনার নাম (Your Full Name)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
+                <input type="tel" id="cusPhone" required placeholder="মোবাইল নম্বর (Phone Number)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs">
+                <textarea id="cusAddress" required placeholder="পূর্ণ ঠিকানা (Full Address - Vill, PO, Dist, Pin)" class="w-full bg-stone-50 border border-stone-200 rounded-xl px-4 py-4 text-xs min-h-[80px]"></textarea>
                 <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-xl text-[10px] uppercase tracking-widest shadow-xl">Confirm on WhatsApp</button>
             </form>
         </div>
