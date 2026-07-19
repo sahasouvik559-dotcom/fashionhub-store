@@ -340,4 +340,11 @@
 
     window.submitOrder = (e) => {
         e.preventDefault();
-        const pLink = window.location.protocol + '//' + window.location.host + window.location.pathname + '?id=' + windo
+        const pLink = window.location.protocol + '//' + window.location.host + window.location.pathname + '?id=' + window.currentP.id;
+        const waMsg = `🛍️ *NEW ORDER*\n\n📦 *Item:* ${window.currentP.name}\n💰 *Price:* ₹${window.currentP.price}\n📏 *Size:* ${document.getElementById('cusSize').value}\n🎨 *Color:* ${document.getElementById('cusColor').value || 'Default'}\n\n👤 *Customer:* ${document.getElementById('cusName').value}\n📞 *Mobile:* ${document.getElementById('cusPhone').value}\n📍 *Address:* ${document.getElementById('cusAddress').value}\n\n🛒 *Link:* ${pLink}`;
+        window.open(`https://wa.me/916291767175?text=${encodeURIComponent(waMsg)}`, '_blank');
+    };
+</script>
+
+</body>
+</html>
