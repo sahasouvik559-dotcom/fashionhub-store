@@ -21,7 +21,15 @@
     .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); }
     
     #shop { scroll-margin-top: 90px; }
-    .product-card { content-visibility: auto; contain-intrinsic-size: 300px; will-change: transform; }
+    .product-card { content-visibility: auto; contain-intrinsic-size: 300px; will-change: transform; transition: all 0.5s ease; }
+
+    /* Deep Link Highlight Effect */
+    .highlight-product {
+        border: 2px solid #064e3b !important;
+        box-shadow: 0 0 25px rgba(6, 78, 59, 0.3) !important;
+        transform: scale(1.03);
+        z-index: 10;
+    }
 
     /* SLOW MOTION LIGHTBOX EFFECT */
     #imageLightbox { transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s; display: flex; opacity: 0; visibility: hidden; }
@@ -79,7 +87,7 @@
     </div>
 </div>
 
-<!-- FEATURES SECTION (বিজ্ঞাপনের ওপর) -->
+<!-- FEATURES SECTION -->
 <div class="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
     <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
         <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-3"><i class="fas fa-tags"></i></div>
@@ -98,7 +106,7 @@
     </div>
 </div>
 
-<!-- ADSTERRA SECTION (আমাদের কালেকশন এর ওপর) -->
+<!-- ADSTERRA SECTION -->
 <div class="max-w-7xl mx-auto px-4 mt-12 space-y-8">
     <div class="flex justify-center">
         <div class="bg-white p-2 border border-stone-100 rounded-2xl shadow-sm">
@@ -203,7 +211,7 @@
         grid.innerHTML = window.allProducts.map(p => {
             const isOut = p.status === 'out';
             return `
-            <div class="product-card bg-white rounded-3xl border border-stone-100 overflow-hidden flex flex-col relative group shadow-sm transition-all hover:shadow-xl">
+            <div id="prod-${p.id}" class="product-card bg-white rounded-3xl border border-stone-100 overflow-hidden flex flex-col relative group shadow-sm transition-all hover:shadow-xl">
                 <button onclick="window.copyProductLink('${p.id}')" class="absolute top-3 right-3 z-30 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-link text-[10px] text-emerald-900"></i></button>
                 <div class="relative aspect-[4/5] overflow-hidden cursor-zoom-in" onclick="window.openLightbox('${p.image}')">
                     ${isOut ? `<div class="out-label">স্টক শেষ<br>(Out of Stock)</div>` : ''}
@@ -218,6 +226,27 @@
                 </div>
             </div>`;
         }).join('');
+
+        // চেক করুন URL-এ কোনো আইডি আছে কিনা
+        checkDeepLink();
+    }
+
+    // নির্দিষ্ট প্রোডাক্টে স্ক্রল করার ফাংশন
+    function checkDeepLink() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+
+        if (productId) {
+            setTimeout(() => {
+                const target = document.getElementById('prod-' + productId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    target.classList.add('highlight-product');
+                    // ৫ সেকেন্ড পর হাইলাইট রিমুভ হবে
+                    setTimeout(() => target.classList.remove('highlight-product'), 5000);
+                }
+            }, 1000);
+        }
     }
 
     // Scroll Control
