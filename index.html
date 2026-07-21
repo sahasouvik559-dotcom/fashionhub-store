@@ -5,134 +5,115 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FashionHub | Premium Style & Gadgets 2026</title>
 
-    <!-- 1. GOOGLE ADSENSE SCRIPT -->
+    <!-- Google AdSense Main Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880" crossorigin="anonymous"></script>
 
     <!-- Tailwind & Fonts -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
   
 <style>
     :root { --primary: #064e3b; --glow: #10b981; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; scroll-behavior: smooth; overflow-x: hidden; margin: 0; padding: 0; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; scroll-behavior: smooth; overflow-x: hidden; }
     .hero-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center; }
-    .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid #f1f1f1; }
+    .glass-nav { background: rgba(255, 255, 255, 0.9); backdrop-filter: blur(15px); border-bottom: 1px solid #f1f1f1; }
     
     #shop, #about { scroll-margin-top: 130px; }
 
-    /* GLOW ANIMATION - ফর লিঙ্ক সার্চ */
+    /* GLOW ANIMATION */
     @keyframes pulse-glow {
         0% { box-shadow: 0 0 5px var(--glow); border-color: var(--glow); transform: scale(1); }
-        50% { box-shadow: 0 0 40px var(--glow); border-color: #fff; transform: scale(1.05); }
+        50% { box-shadow: 0 0 40px var(--glow); border-color: #fff; transform: scale(1.03); }
         100% { box-shadow: 0 0 5px var(--glow); border-color: var(--glow); transform: scale(1); }
     }
-    .highlight-product {
-        animation: pulse-glow 1.5s infinite ease-in-out;
-        z-index: 40 !important;
-        border: 3px solid var(--glow) !important;
-    }
+    .highlight-product { animation: pulse-glow 1.5s infinite ease-in-out; z-index: 40 !important; border: 3px solid var(--glow) !important; }
 
-    /* FOUND BADGE DESIGN */
-    .found-badge {
-        position: absolute; top: -35px; left: 50%; transform: translateX(-50%);
-        background: #10b981; color: white; padding: 8px 18px; border-radius: 50px;
-        font-size: 11px; font-weight: 800; white-space: nowrap; z-index: 50;
-        box-shadow: 0 5px 20px rgba(16, 185, 129, 0.5);
-        animation: bounceBadge 1s infinite;
-    }
+    /* FOUND BADGE */
+    .found-badge { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 8px 18px; border-radius: 50px; font-size: 11px; font-weight: 800; white-space: nowrap; z-index: 50; box-shadow: 0 5px 20px rgba(16, 185, 129, 0.5); animation: bounceBadge 1s infinite; }
     @keyframes bounceBadge { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -10px); } }
 
-    /* MODAL FIX */
-    #imageLightbox, #orderModal, #legalModal { 
-        position: fixed; inset: 0; display: none; 
-        align-items: center; justify-content: center; z-index: 1000; 
-    }
-    #imageLightbox.active, #orderModal.active, #legalModal.active { display: flex; }
+    /* FULL SCREEN LIGHTBOX */
+    #imageLightbox { position: fixed; inset: 0; display: none; background-color: rgba(0,0,0,0.98); z-index: 4000; align-items: center; justify-content: center; cursor: pointer; }
+    #imageLightbox.active { display: flex; }
+    #lightboxImg { max-width: 100vw; max-height: 100vh; object-fit: contain; }
+
+    /* MODALS */
+    #orderModal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 1000; background: rgba(0,0,0,0.6); backdrop-filter: blur(10px); }
+    #orderModal.active { display: flex; }
 
     .product-card { transition: all 0.4s ease; position: relative; background: white; border-radius: 24px; }
-    
-    #toast { 
-        position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-20px);
-        opacity: 0; transition: 0.4s; z-index: 2000;
-    }
+    #toast { position: fixed; top: 100px; left: 50%; transform: translateX(-50%) translateY(-20px); opacity: 0; transition: 0.4s; z-index: 2000; }
     #toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
 </style>
 </head>
 
 <body class="antialiased">
 
-<!-- Toast Notification -->
-<div id="toast" class="bg-emerald-950 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3">
+<!-- Toast -->
+<div id="toast" class="bg-emerald-950 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 text-center">
     <i class="fas fa-check-circle text-emerald-400"></i> 
-    <p class="text-xs font-bold">লিঙ্ক কপি হয়েছে! (Link Copied)</p>
+    <p class="text-xs font-bold uppercase">লিঙ্ক কপি হয়েছে! (Link Copied)</p>
 </div>
 
 <!-- Nav -->
 <nav class="glass-nav fixed w-full z-50 top-0 h-16 flex items-center px-4">
     <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
-        <a href="#" class="flex items-center gap-2">
-            <div class="w-10 h-10 bg-emerald-900 rounded-xl flex items-center justify-center text-white"><i class="fas fa-bolt"></i></div>
+        <div class="flex items-center gap-2">
+            <div class="w-10 h-10 bg-emerald-900 rounded-xl flex items-center justify-center text-white shadow-lg"><i class="fas fa-bolt"></i></div>
             <h1 class="text-xl font-bold font-serif">FashionHub</h1>
-        </a>
-        <div class="hidden md:flex gap-6 text-[10px] uppercase font-bold tracking-widest text-stone-600">
-            <a href="#shop" class="hover:text-emerald-900 transition">Shop</a>
-            <a href="#about" class="hover:text-emerald-900 transition">About Us</a>
         </div>
-        <a href="https://wa.me/916291767175" class="bg-emerald-950 text-white px-5 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest">Help (সাহায্য)</a>
+        <a href="https://wa.me/916291767175" class="bg-emerald-950 text-white px-5 py-2 rounded-full text-[9px] font-bold uppercase tracking-widest">সাহায্য (Help)</a>
     </div>
 </nav>
 
 <!-- Hero Section -->
-<div class="relative pt-16 h-[350px] flex items-center hero-bg text-white">
+<div class="relative pt-16 h-[380px] flex items-center hero-bg text-white">
     <div class="max-w-7xl mx-auto px-6 w-full text-center md:text-left">
         <h1 class="text-3xl md:text-5xl font-bold mb-2 uppercase">সেরা ফ্যাশন ও গ্যাজেট</h1>
         <p class="text-lg opacity-90 mb-6 italic tracking-wide">Premium Quality & Modern Trends</p>
-        <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="bg-emerald-600 px-8 py-3 rounded-full font-bold text-[10px] uppercase shadow-xl">কালেকশন দেখুন</button>
+        <button onclick="document.getElementById('shop').scrollIntoView({behavior: 'smooth'})" class="bg-emerald-600 px-8 py-3 rounded-full font-bold text-[10px] uppercase shadow-xl hover:bg-emerald-700 transition">কালেকশন দেখুন / View Collection</button>
     </div>
 </div>
 
-<!-- Features Section -->
+<!-- 1. FEATURES SECTION (Screenshot Style) -->
 <div class="max-w-7xl mx-auto px-6 mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
-    <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
-        <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-3"><i class="fas fa-tags"></i></div>
-        <h3 class="text-sm font-bold text-emerald-950 uppercase">সাশ্রয়ী দাম (Low Price)</h3>
+    <div class="bg-white p-6 rounded-[2.5rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
+        <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-4"><i class="fas fa-tags"></i></div>
+        <h3 class="text-sm font-bold text-emerald-950 uppercase leading-none">সাশ্রয়ী দাম</h3>
+        <p class="text-[9px] text-stone-400 font-bold uppercase mt-1">(LOW PRICE)</p>
     </div>
-    <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
-        <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-3"><i class="fas fa-truck-fast"></i></div>
-        <h3 class="text-sm font-bold text-emerald-950 uppercase">ক্যাশ অন ডেলিভারি (COD)</h3>
+    <div class="bg-white p-6 rounded-[2.5rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
+        <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-4"><i class="fas fa-truck-fast"></i></div>
+        <h3 class="text-sm font-bold text-emerald-950 uppercase leading-none">ক্যাশ অন ডেলিভারি</h3>
+        <p class="text-[9px] text-stone-400 font-bold uppercase mt-1">(CASH ON DELIVERY)</p>
     </div>
-    <div class="bg-white p-6 rounded-[2rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
-        <div class="w-12 h-12 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-3"><i class="fas fa-rotate"></i></div>
-        <h3 class="text-sm font-bold text-emerald-950 uppercase">সহজ এক্সচেঞ্জ (Easy Exchange)</h3>
+    <div class="bg-white p-6 rounded-[2.5rem] border border-stone-100 flex flex-col items-center text-center shadow-sm">
+        <div class="w-14 h-14 bg-emerald-50 rounded-full flex items-center justify-center text-emerald-900 text-2xl mb-4"><i class="fas fa-rotate"></i></div>
+        <h3 class="text-sm font-bold text-emerald-950 uppercase leading-none">সহজ এক্সচেঞ্জ</h3>
+        <p class="text-[9px] text-stone-400 font-bold uppercase mt-1">(EASY EXCHANGE)</p>
     </div>
 </div>
 
-<!-- ADS SECTION (Adsterra & Google AdSense) -->
+<!-- ================= 2. ADSTERRA & GOOGLE ADS SECTION ================= -->
 <div class="max-w-7xl mx-auto px-4 mt-12 mb-6 space-y-10 flex flex-col items-center">
     
-    <!-- 1. Adsterra Native Ad Banner -->
-    <div class="w-full bg-stone-50 border border-dashed border-stone-200 rounded-[2.5rem] p-6 text-center">
-        <p class="text-[10px] text-stone-400 font-bold uppercase mb-4 tracking-widest">Recommended For You (আপনার জন্য বিশেষ অফার)</p>
-        <div id="container-2da14969d3a54865dc829ebf15bfd520"></div>
-        <script async="async" data-cfasync="false" src="https://eliminatedfertilizer.com/2da14969d3a54865dc829ebf15bfd520/invoke.js"></script>
-    </div>
-
-    <!-- 2. Google AdSense (Placeholder) -->
-    <div class="w-full text-center bg-white border border-stone-100 p-4 rounded-3xl shadow-sm overflow-hidden">
-        <p class="text-[8px] text-stone-300 mb-2 uppercase tracking-widest">Google AdSense</p>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5830205241067880"
-             data-ad-slot="2071456149"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
+    <!-- A. Google AdSense Box -->
+    <div class="w-full text-center bg-white border border-stone-100 p-4 rounded-3xl shadow-sm overflow-hidden min-h-[100px]">
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5830205241067880" data-ad-slot="2071456149" data-ad-format="auto" data-full-width-responsive="true"></ins>
         <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- 3. Adsterra Iframe Banner (160x300) -->
+    <!-- B. Adsterra Native Banner (Type 1) -->
+    <div class="w-full bg-stone-50 border border-dashed border-stone-200 rounded-[2.5rem] p-6 text-center shadow-sm">
+        <p class="text-[10px] text-stone-400 font-bold uppercase mb-4 tracking-widest italic">Recommended For You (আপনার জন্য বিশেষ অফার)</p>
+        <div id="container-2da14969d3a54865dc829ebf15bfd520" class="flex justify-center overflow-hidden"></div>
+        <script async="async" data-cfasync="false" src="https://eliminatedfertilizer.com/2da14969d3a54865dc829ebf15bfd520/invoke.js"></script>
+    </div>
+
+    <!-- C. Adsterra Iframe Banner (Type 2 - 160x300) -->
     <div class="bg-white p-3 border border-stone-100 rounded-2xl shadow-sm text-center">
-        <p class="text-[9px] text-stone-300 font-bold uppercase mb-3 tracking-widest">Sponsored Content</p>
+        <p class="text-[9px] text-stone-300 font-bold uppercase mb-2">Sponsored Content</p>
         <script type="text/javascript">
             atOptions = { 'key' : '41ecde8a4b7d21703af0d5cf2086e7e9', 'format' : 'iframe', 'height' : 300, 'width' : 160, 'params' : {} };
         </script>
@@ -145,41 +126,42 @@
 <div id="shop" class="max-w-7xl mx-auto pt-10 px-4 pb-12">
     <div class="text-center mb-16">
         <h2 class="text-2xl md:text-3xl font-bold text-emerald-950 uppercase tracking-widest">আমাদের কালেকশন</h2>
-        <div class="h-1 w-20 bg-emerald-600 mx-auto mt-2"></div>
+        <p class="text-[10px] text-stone-400 font-bold uppercase mt-1 tracking-widest">Our Exclusive Collection</p>
+        <div class="h-1 w-20 bg-emerald-600 mx-auto mt-4"></div>
     </div>
     
     <div id="loading" class="text-center py-20 text-emerald-900"><i class="fas fa-circle-notch fa-spin text-4xl"></i></div>
-    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-10"></div>
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-8"></div>
 </div>
 
 <!-- About Us Section -->
-<section id="about" class="max-w-7xl mx-auto px-6 py-20 border-t border-stone-100">
+<section id="about" class="max-w-7xl mx-auto px-6 py-20 border-t border-stone-100 text-left">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
         <div>
-            <h2 class="text-3xl font-serif font-bold text-emerald-950 mb-6 uppercase tracking-wider">আমাদের সম্পর্কে <br><span class="text-emerald-600">About FashionHub</span></h2>
-         <div class="space-y-4 text-stone-600 text-sm leading-relaxed">
-                <p>FashionHub-এ আপনার স্বাগতম। আমরা সাশ্রয়ী মূল্যে প্রিমিয়াম কোয়ালিটি ফ্যাশন পণ্য এবং আধুনিক গ্যাজেট আপনার হাতে পৌঁছে দিই। প্রতিটি পণ্য গুণগত মান যাচাই করে সংগ্রহ করা হয়।</p>
-                <p>Every product in our collection is handpicked and quality-checked. With our cash-on-delivery service and easy exchange policy, we prioritize customer satisfaction above all.</p>
+            <h2 class="text-3xl font-serif font-bold text-emerald-950 mb-6 uppercase tracking-wider">আমাদের সম্পর্কে <br><span class="text-emerald-600">About Us</span></h2>
+            <div class="space-y-4 text-stone-600 text-sm leading-relaxed">
+                <p>স্বাগতম <strong>FashionHub</strong>-এ। আমরা সেরা মানের ফ্যাশন পণ্য এবং আধুনিক গ্যাজেট সরবরাহ করি। প্রতিটি পণ্য গুণগত মান যাচাই করে সংগ্রহ করা হয়।</p>
+                <p>Welcome to FashionHub, your premium source for trend-setting fashion and innovative gadgets.</p>
             </div>
         </div>
         <div class="bg-emerald-950 text-white p-10 rounded-[3rem] shadow-2xl">
-            <h4 class="text-lg font-bold mb-4">কেন আমাদের বেছে নেবেন?</h4>
+            <h4 class="text-lg font-bold mb-4 italic">কেন আমাদের বেছে নেবেন?</h4>
             <ul class="space-y-3 text-xs uppercase tracking-widest opacity-80">
-                <li><i class="fas fa-check-circle mr-2 text-emerald-400"></i> ১০০% কোয়ালিটি পণ্য</li>
-                <li><i class="fas fa-check-circle mr-2 text-emerald-400"></i> দ্রুত ডেলিভারি সুবিধা</li>
-                <li><i class="fas fa-check-circle mr-2 text-emerald-400"></i> ২৪/৭ কাস্টমার সাপোর্ট</li>
+                <li><i class="fas fa-check-circle mr-2 text-emerald-400"></i> ১০০% কোয়ালিটি (100% Quality)</li>
+                <li><i class="fas fa-truck mr-2 text-emerald-400"></i> দ্রুত ডেলিভারি (Fast Delivery)</li>
+                <li><i class="fas fa-headset mr-2 text-emerald-400"></i> ২৪/৭ সাপোর্ট (24/7 Support)</li>
             </ul>
         </div>
     </div>
 </section>
 
-<!-- Lightbox -->
-<div id="imageLightbox" onclick="window.closeLightbox()" class="bg-black/95 backdrop-blur-sm">
-    <img id="lightboxImg" src="" class="max-w-[90%] max-h-[85vh] rounded-2xl shadow-2xl">
+<!-- FULL SCREEN LIGHTBOX (Tap anywhere to return) -->
+<div id="imageLightbox" onclick="window.closeLightbox()">
+    <img id="lightboxImg" src="">
 </div>
 
-<!-- Order Modal -->
-<div id="orderModal" class="bg-emerald-950/20 backdrop-blur-md">
+<!-- Order Modal (Bilingual + Size/Color) -->
+<div id="orderModal">
     <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-8 shadow-2xl relative text-center mx-4 max-h-[90vh] overflow-y-auto">
         <button onclick="window.closeModal()" class="absolute top-6 right-6 text-stone-300 text-xl"><i class="fas fa-times"></i></button>
         <h3 class="font-bold text-xl text-emerald-950 mb-1 uppercase tracking-wider">অর্ডার ডিটেইলস</h3>
@@ -188,54 +170,39 @@
         <form onsubmit="window.submitOrder(event)" class="space-y-4">
             <div class="grid grid-cols-2 gap-4 text-left">
                 <div>
-                    <label class="block text-[10px] ml-2 mb-1 font-bold text-stone-500 uppercase tracking-widest">Size (সাইজ)</label>
-                    <select id="cusSize" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-xs">
-                        <option value="Not Specified">Select Size</option>
-                        <option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
+                    <label class="block text-[10px] ml-1 mb-1 font-bold text-stone-500 uppercase">সাইজ (Size)</label>
+                    <select id="cusSize" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-xs font-bold">
+                        <option>Standard</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>XXL</option>
                     </select>
                 </div>
                 <div>
-                    <label class="block text-[10px] ml-2 mb-1 font-bold text-stone-500 uppercase tracking-widest">Color (রঙ)</label>
-                    <input type="text" id="cusColor" placeholder="Red, Black etc." class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-xs">
+                    <label class="block text-[10px] ml-1 mb-1 font-bold text-stone-500 uppercase">রঙ (Color)</label>
+                    <input type="text" id="cusColor" placeholder="Red/Black" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3 text-xs font-bold">
                 </div>
             </div>
             <div class="text-left">
-                <label class="block text-[10px] ml-2 mb-1 font-bold text-stone-500 uppercase tracking-widest">Name (আপনার নাম)</label>
-                <input type="text" id="cusName" required placeholder="Full Name" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs">
+                <label class="block text-[10px] ml-1 mb-1 font-bold text-stone-500 uppercase">নাম (Name)</label>
+                <input type="text" id="cusName" required placeholder="Full Name" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold">
             </div>
             <div class="text-left">
-                <label class="block text-[10px] ml-2 mb-1 font-bold text-stone-500 uppercase tracking-widest">Phone (ফোন নম্বর)</label>
-                <input type="tel" id="cusPhone" required placeholder="WhatsApp Number" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs">
+                <label class="block text-[10px] ml-1 mb-1 font-bold text-stone-500 uppercase">ফোন নম্বর (Phone)</label>
+                <input type="tel" id="cusPhone" required placeholder="WhatsApp Phone" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold">
             </div>
             <div class="text-left">
-                <label class="block text-[10px] ml-2 mb-1 font-bold text-stone-500 uppercase tracking-widest">Address (পূর্ণ ঠিকানা)</label>
-                <textarea id="cusAddress" required placeholder="Full Delivery Address" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs h-24"></textarea>
+                <label class="block text-[10px] ml-1 mb-1 font-bold text-stone-500 uppercase">পূর্ণ ঠিকানা (Address)</label>
+                <textarea id="cusAddress" required placeholder="Full Delivery Address" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold h-24"></textarea>
             </div>
-            <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-4 rounded-2xl shadow-xl hover:scale-[1.02] transition-transform mt-4">
-                <span class="text-xs uppercase tracking-widest">হোয়াটসঅ্যাপে অর্ডার দিন</span><br>
-                <span class="text-[9px] opacity-60">Order via WhatsApp</span>
-            </button>
+            <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-2xl shadow-xl hover:scale-[1.02] transition-transform text-xs uppercase tracking-widest">হোয়াটসঅ্যাপে অর্ডার দিন<br><span class="opacity-60">Order via WhatsApp</span></button>
         </form>
     </div>
 </div>
 
-<!-- Legal Modal -->
-<div id="legalModal" class="bg-black/60 backdrop-blur-md">
-    <div class="bg-white w-full max-w-2xl rounded-3xl p-8 shadow-2xl relative mx-4 max-h-[80vh] overflow-y-auto">
-        <button onclick="window.closeLegal()" class="absolute top-6 right-6 text-stone-300 text-xl"><i class="fas fa-times"></i></button>
-        <div id="legalContent" class="text-stone-700 leading-relaxed text-sm"></div>
+<footer class="bg-emerald-950 text-white py-12 text-center">
+    <div class="flex flex-wrap justify-center gap-6 text-[10px] uppercase font-bold tracking-widest text-emerald-100/40 mb-10 px-4">
+        <button onclick="alert('গোপনীয়তা নীতি: আপনার তথ্য নিরাপদ।')">Privacy Policy (গোপনীয়তা নীতি)</button>
+        <button onclick="alert('শর্তাবলী: ডেলিভারির সময় পণ্য চেক করুন।')">Terms & Conditions (শর্তাবলী)</button>
     </div>
-</div>
-
-<footer class="bg-emerald-950 text-white pt-16 pb-12 px-6 text-center">
-    <div class="max-w-7xl mx-auto">
-        <h2 class="text-2xl font-serif font-bold italic mb-6">FashionHub</h2>
-        <div class="flex flex-wrap justify-center gap-6 text-[10px] uppercase font-bold tracking-widest text-emerald-100/40 mb-10">
-            <button onclick="window.openLegal('privacy')" class="hover:text-emerald-400 transition">Privacy Policy (গোপনীয়তা নীতি)</button>
-            <button onclick="window.openLegal('terms')" class="hover:text-emerald-400 transition">Terms & Conditions (শর্তাবলী)</button>
-        </div>
-        <p class="text-[9px] text-emerald-700 uppercase tracking-[0.4em] font-bold">© 2026 FashionHub Store. All Rights Reserved.</p>
-    </div>
+    <p class="text-[9px] text-emerald-700 uppercase tracking-[0.4em] font-bold px-4">© 2026 FashionHub Store. All Rights Reserved.</p>
 </footer>
 
 <script type="module">
@@ -260,17 +227,20 @@
         grid.innerHTML = window.allProducts.map(p => {
             const isOut = p.status === 'out';
             return `
-            <div id="prod-${p.id}" class="product-card border border-stone-100 flex flex-col group shadow-sm bg-white">
+            <div id="prod-${p.id}" class="product-card border border-stone-100 flex flex-col group shadow-sm bg-white overflow-visible">
                 <button onclick="window.copyProductLink('${p.id}')" class="absolute top-3 right-3 z-30 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center shadow-md"><i class="fas fa-link text-[10px] text-emerald-900"></i></button>
-                <div class="relative aspect-[4/5] overflow-hidden rounded-t-[24px] cursor-pointer" onclick="window.openLightbox('${p.image}')">
+                <div class="relative aspect-[4/5] overflow-hidden rounded-t-2xl cursor-pointer" onclick="window.openLightbox('${p.image}')">
                     ${isOut ? `<div class="absolute inset-0 bg-black/60 z-10 flex items-center justify-center text-white font-bold text-[10px]">STOCK OUT</div>` : ''}
                     <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700 ${isOut ? 'grayscale opacity-50' : 'group-hover:scale-110'}" loading="lazy">
                 </div>
-                <div class="p-5 text-center">
-                    <h4 class="font-bold text-[10px] truncate text-emerald-950 uppercase mb-4">${p.name}</h4>
-                    <div class="flex justify-between items-center">
+                <div class="p-4 text-center">
+                    <!-- PRODUCT FULL NAME - NO TRUNCATE -->
+                    <h4 class="font-bold text-[11px] md:text-xs text-emerald-950 uppercase mb-3 min-h-[30px] flex items-center justify-center italic leading-tight">
+                        ${p.name}
+                    </h4>
+                    <div class="flex justify-between items-center px-1">
                         <span class="font-bold text-emerald-900 text-lg">₹${p.price}</span>
-                        <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-10 h-10 ${isOut ? 'bg-stone-300' : 'bg-emerald-950'} text-white rounded-xl flex items-center justify-center transition-all shadow-md"><i class="fas fa-shopping-bag text-xs"></i></button>
+                        <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-9 h-9 ${isOut ? 'bg-stone-300' : 'bg-emerald-950'} text-white rounded-xl flex items-center justify-center transition-all shadow-md active:scale-90"><i class="fas fa-shopping-bag text-xs"></i></button>
                     </div>
                 </div>
             </div>`;
@@ -278,7 +248,6 @@
         checkDeepLink();
     }
 
-    // নির্দিষ্ট প্রোডাক্ট হাইলাইট (Link Search Glow & Badge)
     function checkDeepLink() {
         const urlParams = new URLSearchParams(window.location.search);
         const productId = urlParams.get('id');
@@ -292,10 +261,7 @@
                     badge.innerHTML = 'আপনার প্রোডাক্টটি এখানে (Found It!)';
                     target.appendChild(badge);
                     target.classList.add('highlight-product');
-                    setTimeout(() => { 
-                        target.classList.remove('highlight-product'); 
-                        if(badge) badge.remove(); 
-                    }, 12000);
+                    setTimeout(() => { target.classList.remove('highlight-product'); if(badge) badge.remove(); }, 15000);
                 }
             }, 1800);
         }
@@ -306,18 +272,6 @@
     window.openModal = (id) => { window.currentP = window.allProducts.find(x => x.id === id); document.getElementById('orderModal').classList.add('active'); document.body.style.overflow = 'hidden'; };
     window.closeModal = () => { document.getElementById('orderModal').classList.remove('active'); document.body.style.overflow = 'auto'; };
     
-    window.openLegal = (type) => {
-        const content = document.getElementById('legalContent');
-        if(type === 'privacy') {
-            content.innerHTML = `<h3 class="text-xl font-bold mb-4">Privacy Policy</h3><p>আপনার তথ্য আমাদের কাছে নিরাপদ।</p>`;
-        } else {
-            content.innerHTML = `<h3 class="text-xl font-bold mb-4">Terms & Conditions</h3><p>পণ্য ডেলিভারি নেওয়ার পর চেক করুন।</p>`;
-        }
-        document.getElementById('legalModal').classList.add('active');
-        document.body.style.overflow = 'hidden';
-    };
-    window.closeLegal = () => { document.getElementById('legalModal').classList.remove('active'); document.body.style.overflow = 'auto'; };
-
     window.copyProductLink = (id) => {
         const link = window.location.origin + window.location.pathname + '?id=' + id;
         navigator.clipboard.writeText(link);
@@ -327,7 +281,7 @@
     window.submitOrder = (e) => {
         e.preventDefault();
         const p = window.currentP;
-        const msg = `New Order:%0AProduct: ${p.name}%0ASize: ${document.getElementById('cusSize').value}%0AColor: ${document.getElementById('cusColor').value}%0AName: ${document.getElementById('cusName').value}%0AAddress: ${document.getElementById('cusAddress').value}%0ALink: ${window.location.origin + window.location.pathname}?id=${p.id}`;
+        const msg = `New Order Request:%0AProduct: ${p.name}%0APrice: ₹${p.price}%0ASize: ${document.getElementById('cusSize').value}%0AColor: ${document.getElementById('cusColor').value}%0AName: ${document.getElementById('cusName').value}%0APhone: ${document.getElementById('cusPhone').value}%0AAddress: ${document.getElementById('cusAddress').value}%0ALink: ${window.location.origin + window.location.pathname}?id=${p.id}`;
         window.open(`https://wa.me/916291767175?text=${msg}`, '_blank');
         window.closeModal();
     };
