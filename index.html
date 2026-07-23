@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>FashionHub | Premium Style 2026</title>
 
-    <!-- Google AdSense -->
+    <!-- Google AdSense Script in Head -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880" crossorigin="anonymous"></script>
 
     <!-- Tailwind & Fonts -->
@@ -15,20 +15,17 @@
   
 <style>
     :root { --primary: #064e3b; --glow: #10b981; }
-    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; overflow-x: hidden; scroll-behavior: auto; } /* Auto for custom fast scroll */
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; overflow-x: hidden; scroll-behavior: auto; }
     
     .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 64px; }
     .hero-bg { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center; }
     
-    /* Scroll Target Offset */
     #our-products-section { scroll-margin-top: 100px; }
     #about { scroll-margin-top: 100px; }
 
-    /* Category Buttons */
     .cat-btn { transition: 0.3s; border: 1px solid #ddd; background: white; font-size: 11px; font-weight: bold; text-transform: uppercase; padding: 10px 18px; border-radius: 50px; }
     .cat-btn.active { background-color: #064e3b; color: white; border-color: #064e3b; box-shadow: 0 4px 10px rgba(6, 78, 59, 0.2); }
 
-    /* Pulse Glow Animation */
     @keyframes pulse-glow {
         0%, 100% { box-shadow: 0 0 5px var(--glow); border: 3px solid var(--glow); transform: scale(1); }
         50% { box-shadow: 0 0 30px var(--glow); border: 3px solid #fff; transform: scale(1.03); }
@@ -36,12 +33,10 @@
     .highlight-product { animation: pulse-glow 1.5s infinite ease-in-out; z-index: 50; border-radius: 24px !important; }
     .found-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 5px 15px; border-radius: 50px; font-size: 10px; font-weight: 800; z-index: 60; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.5); white-space: nowrap; }
 
-    /* Full Screen Image Viewer */
     #imageLightbox { position: fixed; inset: 0; display: none; background-color: #000; z-index: 10000; align-items: center; justify-content: center; cursor: pointer; }
     #imageLightbox.active { display: flex; }
     #lightboxImg { width: 100%; height: 100%; object-fit: contain; }
 
-    /* Product Card & Full Name */
     .product-card { background: white; border-radius: 24px; border: 1px solid #f1f1f1; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
     .product-name { font-size: 12px; font-weight: 700; color: #064e3b; text-transform: uppercase; line-height: 1.4; margin-bottom: 12px; word-wrap: break-word; }
 
@@ -78,7 +73,6 @@
         <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-wide">সেরা ফ্যাশন ও গ্যাজেট</h2>
         <p class="text-[10px] opacity-80 mt-2 uppercase tracking-[0.3em] mb-8">Premium Style & Modern Tech</p>
         
-        <!-- FAST VIEW COLLECTION BUTTON -->
         <button onclick="window.fastScroll('our-products-section')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-widest shadow-2xl active:scale-95 transition-all">
             কালেকশন দেখুন (View Collection)
         </button>
@@ -88,7 +82,6 @@
 <!-- Main Section -->
 <div class="max-w-7xl mx-auto pt-10 px-4 pb-12">
     
-    <!-- ================= AD ZONE: NATIVE & BANNER ADS ABOVE TITLE ================= -->
     <div id="ad-zone" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
         <div class="bg-white p-4 rounded-[2.5rem] border border-stone-100 shadow-sm text-center overflow-hidden">
             <p class="text-[9px] text-stone-400 font-bold uppercase mb-3">আপনার জন্য বিশেষ অফার (Recommended For You)</p>
@@ -105,13 +98,25 @@
         </div>
     </div>
 
-    <!-- OUR PRODUCTS TITLE (Scroll Target) -->
+    <!-- Additional AdSense Display Ad Block -->
+    <div class="bg-white p-4 rounded-[2.5rem] border border-stone-100 shadow-sm mb-12 text-center">
+        <p class="text-[9px] text-stone-400 font-bold uppercase mb-3">বিজ্ঞাপন (Advertisement)</p>
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-5830205241067880"
+             data-ad-slot="2440051371"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+    </div>
+
     <div id="our-products-section" class="text-center mb-8">
         <h2 class="text-2xl font-bold text-emerald-950 uppercase">আমাদের পণ্যসমূহ (Our Products)</h2>
         <div class="h-1 w-16 bg-emerald-600 mx-auto mt-3"></div>
     </div>
 
-    <!-- Category Filters -->
     <div class="flex flex-wrap justify-center gap-3 mb-10">
         <button onclick="window.filterCat('all')" id="btn-all" class="cat-btn active">সব (All)</button>
         <button onclick="window.filterCat('men')" id="btn-men" class="cat-btn">পুরুষ (Men)</button>
@@ -164,7 +169,7 @@
     <img id="lightboxImg" src="">
 </div>
 
-<!-- ORDER MODAL (Bilingual Labels & Placeholders) -->
+<!-- ORDER MODAL -->
 <div id="orderModal">
     <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto mx-4">
         <button onclick="window.closeModal()" class="absolute top-6 right-6 text-stone-300 text-xl"><i class="fas fa-times"></i></button>
@@ -214,11 +219,10 @@
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    // Fast Scroll Logic
     window.fastScroll = (targetId) => {
         const element = document.getElementById(targetId);
         if (element) {
-            const offset = 80; // Offset for header
+            const offset = 80;
             const bodyRect = document.body.getBoundingClientRect().top;
             const elementRect = element.getBoundingClientRect().top;
             const elementPosition = elementRect - bodyRect;
@@ -280,7 +284,6 @@
                 </div>
                 
                 <div class="p-4 flex flex-grow flex-col text-center">
-                    <!-- FULL PRODUCT NAME - NO TRUNCATION -->
                     <h4 class="product-name italic">${p.name}</h4>
                     
                     <div class="mt-auto flex justify-between items-center bg-stone-50 p-2.5 rounded-2xl">
@@ -297,10 +300,42 @@
     
     window.copyLink = (id) => {
         const url = window.location.origin + window.location.pathname + '?id=' + id;
-        navigator.clipboard.writeText(url);
-        const t = document.getElementById('toast'); t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 3000);
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast();
+            }).catch(() => {
+                fallbackCopy(url);
+            });
+        } else {
+            fallbackCopy(url);
+        }
     };
+
+    function fallbackCopy(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.opacity = "0";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast();
+        } catch (err) {
+            alert('লিঙ্ক কপি করতে সমস্যা হয়েছে।');
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showToast() {
+        const t = document.getElementById('toast'); 
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 3000);
+    }
 
     window.openModal = (id) => { window.currentP = window.allProducts.find(x => x.id === id); document.getElementById('orderModal').classList.add('active'); };
     window.closeModal = () => { document.getElementById('orderModal').classList.remove('active'); };
@@ -313,5 +348,6 @@
         window.closeModal();
     };
 </script>
+
 </body>
 </html>
