@@ -16,7 +16,7 @@
     <meta property="og:description" content="সেরা ফ্যাশন ও গ্যাজেট সংগ্রহ দেখুন FashionHub-এ। প্রিমিয়াম কোয়ালিটি ও দ্রুত ডেলিভারি।">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sahasouvik559-dotcom.github.io/fashionhub-store/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=100&w=3000&auto=format&fit=crop">
 
     <!-- Schema.org markup for Google Rich Results -->
     <script type="application/ld+json">
@@ -24,7 +24,7 @@
       "@context": "https://schema.org",
       "@type": "Store",
       "name": "FashionHub",
-      "image": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop",
+      "image": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=100&w=3000&auto=format&fit=crop",
       "@id": "",
       "url": "https://sahasouvik559-dotcom.github.io/fashionhub-store/",
       "telephone": "+916291767175",
@@ -64,7 +64,6 @@
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; overflow-x: hidden; scroll-behavior: auto; }
     
     .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 64px; }
-    .hero-bg { background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=60&w=1200&auto=format&fit=crop'); background-size: cover; background-position: center; }
     
     #our-products-section { scroll-margin-top: 100px; }
     #about { scroll-margin-top: 100px; }
@@ -79,9 +78,9 @@
     .highlight-product { animation: pulse-glow 1.5s infinite ease-in-out; z-index: 50; border-radius: 24px !important; }
     .found-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 5px 15px; border-radius: 50px; font-size: 10px; font-weight: 800; z-index: 60; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.5); white-space: nowrap; }
 
-    #imageLightbox { position: fixed; inset: 0; display: none; background-color: #000; z-index: 10000; align-items: center; justify-content: center; cursor: pointer; }
+    #imageLightbox { position: fixed; inset: 0; display: none; background-color: rgba(0, 0, 0, 0.95); z-index: 10000; align-items: center; justify-content: center; cursor: zoom-out; padding: 10px; }
     #imageLightbox.active { display: flex; }
-    #lightboxImg { width: 100%; height: 100%; object-fit: contain; }
+    #lightboxImg { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); }
 
     .product-card { background: white; border-radius: 24px; border: 1px solid #f1f1f1; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
     .product-name { font-size: 12px; font-weight: 700; color: #064e3b; text-transform: uppercase; line-height: 1.4; margin-bottom: 12px; word-wrap: break-word; }
@@ -95,8 +94,8 @@
 <body class="antialiased">
 
 <!-- Toast Notification -->
-<div id="toast" class="bg-black text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase shadow-2xl text-center">
-    লিঙ্ক কপি হয়েছে! (Link Copied!)
+<div id="toast" class="bg-emerald-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase shadow-2xl text-center border border-emerald-700">
+    পণ্যটির লিঙ্ক কপি হয়েছে! (Link Copied!)
 </div>
 
 <!-- Navigation -->
@@ -113,13 +112,21 @@
     </div>
 </nav>
 
-<!-- Hero Section -->
-<div class="relative pt-16 h-[340px] flex items-center hero-bg text-white text-center">
-    <div class="w-full px-6 flex flex-col items-center">
-        <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-wide">সেরা ফ্যাশন ও গ্যাজেট</h2>
-        <p class="text-[10px] opacity-80 mt-2 uppercase tracking-[0.3em] mb-8">Premium Style & Modern Tech</p>
+<!-- Hero Section with Ultra-Clear & Bright Cover Photo -->
+<div class="relative pt-16 bg-stone-900 text-white text-center overflow-hidden py-32 px-4 min-h-[480px] flex items-center justify-center">
+    <!-- Clickable Background Cover Photo (Crystal Clear HD) -->
+    <div class="absolute inset-0 z-0 cursor-zoom-in" onclick="window.openLightbox('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=100&w=3000&auto=format&fit=crop')">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?q=100&w=2400&auto=format&fit=crop" class="w-full h-full object-cover object-[50%_35%] opacity-95 scale-100 hover:scale-105 transition-transform duration-700 brightness-110 contrast-110" alt="Cover Photo HD">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10"></div>
+    </div>
+
+    <!-- Hero Content -->
+    <div class="max-w-xl mx-auto flex flex-col items-center z-10 relative">
+        <span class="text-[9px] bg-emerald-600/80 text-white px-4 py-1.5 rounded-full font-bold uppercase tracking-widest mb-3 border border-emerald-400/40 backdrop-blur-md shadow-lg">ট্যাপ করে ছবি বড় করুন (Tap to View)</span>
+        <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-wide drop-shadow-2xl text-white">সেরা ফ্যাশন ও গ্যাজেট</h2>
+        <p class="text-[11px] opacity-100 mt-2 uppercase tracking-[0.3em] mb-8 font-extrabold drop-shadow-lg text-emerald-300">Premium Style & Modern Tech</p>
         
-        <button onclick="window.fastScroll('our-products-section')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-widest shadow-2xl active:scale-95 transition-all">
+        <button onclick="window.fastScroll('our-products-section')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-widest shadow-2xl active:scale-95 transition-all border border-emerald-400/30">
             কালেকশন দেখুন (View Collection)
         </button>
     </div>
@@ -166,7 +173,7 @@
         </div>
     </div>
 
-    <!-- ================= GOOGLE ADSENSE (Inserted below Adsterra & above Product Section) ================= -->
+    <!-- Google AdSense -->
     <div class="bg-white p-4 rounded-[2rem] border border-stone-100 shadow-sm text-center mb-12 overflow-hidden">
         <p class="text-[9px] text-stone-400 font-bold uppercase mb-3 tracking-widest">বিজ্ঞাপন (Advertisement)</p>
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880"
@@ -373,10 +380,39 @@
     
     window.copyLink = (id) => {
         const url = window.location.origin + window.location.pathname + '?id=' + id;
-        navigator.clipboard.writeText(url);
-        const t = document.getElementById('toast'); t.style.display = 'block';
-        setTimeout(() => t.style.display = 'none', 3000);
+        
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(() => {
+                showToast();
+            }).catch(() => {
+                fallbackCopyText(url);
+            });
+        } else {
+            fallbackCopyText(url);
+        }
     };
+
+    function fallbackCopyText(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        textArea.style.position = "fixed";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        try {
+            document.execCommand('copy');
+            showToast();
+        } catch (err) {
+            alert('লিংক কপি করা সম্ভব হয়নি।');
+        }
+        document.body.removeChild(textArea);
+    }
+
+    function showToast() {
+        const t = document.getElementById('toast');
+        t.style.display = 'block';
+        setTimeout(() => t.style.display = 'none', 3000);
+    }
 
     window.openModal = (id) => { window.currentP = window.allProducts.find(x => x.id === id); document.getElementById('orderModal').classList.add('active'); };
     window.closeModal = () => { document.getElementById('orderModal').classList.remove('active'); };
