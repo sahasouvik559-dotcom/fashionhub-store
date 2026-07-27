@@ -6,51 +6,19 @@
     
     <!-- SEO Meta Tags -->
     <title>FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ ২০২৬</title>
-    <meta name="description" content="FashionHub-এ পাবেন প্রিমিয়াম কোয়ালিটি পোশাক, স্টাইলিশ পুরুষ ও মহিলা ফ্যাশন এবং আধুনিক গ্যাজেট সেরা দামে। দ্রুত হোম ডেলিভারি ও ক্যাশ অন ডেলিভারি সুবিধা।">
-    <meta name="keywords" content="FashionHub, Online Shopping in India, Men Fashion, Women Fashion, Gadgets, Trendy Clothing, Best E-commerce Site 2026">
-    <meta name="author" content="Souvik Saha">
-    <meta name="robots" content="index, follow">
+    <meta name="description" content="FashionHub-এ পাবেন প্রিমিয়াম কোয়ালিটি পোশাক, স্টাইলিশ পুরুষ ও মহিলা ফ্যাশন এবং আধুনিক গ্যাজেট সেরা দামে।">
     
-    <!-- Open Graph / Social Media Meta Tags (Optimized for WhatsApp Preview) -->
+    <!-- Open Graph / Social Media Meta Tags (Dynamic Image Support) -->
     <meta property="og:title" content="FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ ২০২৬">
     <meta property="og:description" content="প্রিমিয়াম কোয়ালিটি পোশাক, স্টাইলিশ পুরুষ ও মহিলা ফ্যাশন এবং আধুনিক গ্যাজেট সেরা দামে।">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sahasouvik559-dotcom.github.io/fashionhub-store/">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&auto=format&fit=crop&q=60">
+    <meta property="og:image" id="metaImage" content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&auto=format&fit=crop&q=60">
+<!-- Google-কে সাইটটি ইনডেক্স করার অনুমতি দেওয়া -->
+<meta name="robots" content="index, follow">
 
-    <!-- Schema.org markup for Google Rich Results -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Store",
-      "name": "FashionHub",
-      "image": "https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&auto=format&fit=crop&q=60",
-      "@id": "",
-      "url": "https://sahasouvik559-dotcom.github.io/fashionhub-store/",
-      "telephone": "+916291767175",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Belgharia",
-        "addressRegion": "West Bengal",
-        "addressCountry": "IN"
-      },
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      }
-    }
-    </script>
-
+<!-- Google-এর জন্য পণ্যের তালিকার পাত্র (Container) -->
+<script type="application/ld+json" id="productSchema"></script>
     <!-- Google AdSense Global Script -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880" crossorigin="anonymous"></script>
 
@@ -62,38 +30,29 @@
 <style>
     :root { --primary: #064e3b; --glow: #10b981; }
     body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #fafaf9; overflow-x: hidden; scroll-behavior: auto; }
-    
     .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid #eee; height: 64px; }
-    
     #our-products-section { scroll-margin-top: 100px; }
-    #about { scroll-margin-top: 100px; }
-
     .cat-btn { transition: 0.3s; border: 1px solid #ddd; background: white; font-size: 11px; font-weight: bold; text-transform: uppercase; padding: 10px 18px; border-radius: 50px; }
     .cat-btn.active { background-color: #064e3b; color: white; border-color: #064e3b; box-shadow: 0 4px 10px rgba(6, 78, 59, 0.2); }
-
     @keyframes pulse-glow {
         0%, 100% { box-shadow: 0 0 5px var(--glow); border: 3px solid var(--glow); transform: scale(1); }
         50% { box-shadow: 0 0 30px var(--glow); border: 3px solid #fff; transform: scale(1.03); }
     }
     .highlight-product { animation: pulse-glow 1.5s infinite ease-in-out; z-index: 50; border-radius: 24px !important; }
     .found-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: #10b981; color: white; padding: 5px 15px; border-radius: 50px; font-size: 10px; font-weight: 800; z-index: 60; box-shadow: 0 5px 15px rgba(16, 185, 129, 0.5); white-space: nowrap; }
-
     #imageLightbox { position: fixed; inset: 0; display: none; background-color: rgba(0, 0, 0, 0.95); z-index: 10000; align-items: center; justify-content: center; cursor: zoom-out; padding: 10px; }
     #imageLightbox.active { display: flex; }
-    #lightboxImg { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7); }
-
+    #lightboxImg { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: 12px; }
     .product-card { background: white; border-radius: 24px; border: 1px solid #f1f1f1; transition: 0.3s; height: 100%; display: flex; flex-direction: column; }
-    .product-name { font-size: 12px; font-weight: 700; color: #064e3b; text-transform: uppercase; line-height: 1.4; margin-bottom: 12px; word-wrap: break-word; }
-
-    #orderModal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 9000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); padding: 15px; }
-    #orderModal.active { display: flex; }
+    .product-name { font-size: 12px; font-weight: 700; color: #064e3b; text-transform: uppercase; line-height: 1.4; margin-bottom: 12px; }
+    #orderModal, #infoModal { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 9000; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); padding: 15px; }
+    #orderModal.active, #infoModal.active { display: flex; }
     #toast { position: fixed; top: 85px; left: 50%; transform: translateX(-50%); z-index: 11000; display: none; }
 </style>
 </head>
 
 <body class="antialiased">
 
-<!-- Toast Notification -->
 <div id="toast" class="bg-emerald-900 text-white px-6 py-3 rounded-full text-[10px] font-bold uppercase shadow-2xl text-center border border-emerald-700">
     পণ্যটির লিঙ্ক কপি হয়েছে! (Link Copied!)
 </div>
@@ -103,29 +62,22 @@
     <div class="max-w-7xl mx-auto w-full flex justify-between items-center">
         <div class="flex items-center gap-2">
             <div class="w-9 h-9 bg-emerald-900 rounded-xl flex items-center justify-center text-white shadow-lg"><i class="fas fa-bolt"></i></div>
-            <h1 style="font-size: 20px; font-weight: bold; font-style: italic; letter-spacing: -0.5px;">Fashion<span style="color: green;">Hub</span></h1>
+            <h1 style="font-size: 20px; font-weight: bold; font-style: italic;">Fashion<span style="color: green;">Hub</span></h1>
         </div>
-        <div class="flex gap-3">
-             <button onclick="window.fastScroll('about')" class="text-[9px] font-bold uppercase text-stone-600 hidden sm:block border border-stone-200 px-3 py-2 rounded-full">আমাদের সম্পর্কে (About Us)</button>
-             <a href="https://wa.me/916291767175" class="bg-emerald-950 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase">সাহায্য (Help)</a>
-        </div>
+        <a href="https://wa.me/916291767175" class="bg-emerald-950 text-white px-5 py-2 rounded-full text-[10px] font-bold uppercase">সাহায্য (Help)</a>
     </div>
 </nav>
 
-<!-- Hero Section with Cover Photo -->
+<!-- Hero Section (Cover Photo with Lightbox Enabled) -->
 <div class="relative pt-16 bg-stone-900 text-white text-center overflow-hidden py-32 px-4 min-h-[480px] flex items-center justify-center">
     <div class="absolute inset-0 z-0 cursor-zoom-in" onclick="window.openLightbox('https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&auto=format&fit=crop&q=80')">
-        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&auto=format&fit=crop&q=80" class="w-full h-full object-cover object-[50%_35%] opacity-95 scale-100 hover:scale-105 transition-transform duration-700 brightness-110 contrast-110" alt="Cover Photo HD">
+        <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=1200&auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-95">
         <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/10"></div>
     </div>
-
-    <!-- Hero Content -->
-    <div class="max-w-xl mx-auto flex flex-col items-center z-10 relative">
-        <span class="text-[9px] bg-emerald-600/80 text-white px-4 py-1.5 rounded-full font-bold uppercase tracking-widest mb-3 border border-emerald-400/40 backdrop-blur-md shadow-lg">ট্যাপ করে ছবি বড় করুন (Tap to View)</span>
-        <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-wide drop-shadow-2xl text-white">সেরা ফ্যাশন ও গ্যাজেট</h2>
-        <p class="text-[11px] opacity-100 mt-2 uppercase tracking-[0.3em] mb-8 font-extrabold drop-shadow-lg text-emerald-300">Premium Style & Modern Tech</p>
-        
-        <button onclick="window.fastScroll('our-products-section')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-[12px] uppercase tracking-widest shadow-2xl active:scale-95 transition-all border border-emerald-400/30">
+    <div class="max-w-xl mx-auto flex flex-col items-center z-10 relative pointer-events-none">
+        <h2 class="text-3xl md:text-5xl font-bold uppercase tracking-wide text-white pointer-events-auto">সেরা ফ্যাশন ও গ্যাজেট</h2>
+        <p class="text-[11px] mt-2 uppercase tracking-[0.3em] mb-8 font-extrabold text-emerald-300 pointer-events-auto">Premium Style & Modern Tech</p>
+        <button onclick="window.fastScroll('our-products-section')" class="bg-emerald-600 hover:bg-emerald-700 text-white px-10 py-4 rounded-full font-bold text-[12px] uppercase shadow-2xl pointer-events-auto">
             কালেকশন দেখুন (View Collection)
         </button>
     </div>
@@ -134,31 +86,10 @@
 <!-- Main Section -->
 <div class="max-w-7xl mx-auto pt-10 px-4 pb-12">
     
-    <!-- Features Highlight Section -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-        <div class="bg-white p-5 rounded-2xl border border-stone-100 shadow-sm text-center flex flex-col items-center justify-center">
-            <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mb-3 text-base shadow-inner"><i class="fas fa-tags"></i></div>
-            <h3 class="text-xs font-bold text-emerald-950 uppercase">সাশ্রয়ী মূল্যে পণ্য</h3>
-            <p class="text-[10px] text-stone-500 uppercase mt-1">Budget-Friendly Products</p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-stone-100 shadow-sm text-center flex flex-col items-center justify-center">
-            <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mb-3 text-base shadow-inner"><i class="fas fa-wallet"></i></div>
-            <h3 class="text-xs font-bold text-emerald-950 uppercase">ক্যাশ অন ডেলিভারি উপলব্ধ</h3>
-            <p class="text-[10px] text-stone-500 uppercase mt-1">COD Available</p>
-        </div>
-
-        <div class="bg-white p-5 rounded-2xl border border-stone-100 shadow-sm text-center flex flex-col items-center justify-center">
-            <div class="w-10 h-10 bg-emerald-50 text-emerald-700 rounded-full flex items-center justify-center mb-3 text-base shadow-inner"><i class="fas fa-sync-alt"></i></div>
-            <h3 class="text-xs font-bold text-emerald-950 uppercase">সহজ এক্সচেঞ্জ সুবিধা</h3>
-            <p class="text-[10px] text-stone-500 uppercase mt-1">Easy Exchange Facility</p>
-        </div>
-    </div>
-
     <!-- Adsterra Ad Zone -->
     <div id="ad-zone" class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
         <div class="bg-white p-4 rounded-[2.5rem] border border-stone-100 shadow-sm text-center overflow-hidden">
-            <p class="text-[9px] text-stone-400 font-bold uppercase mb-3">আপনার জন্য বিশেষ অফার (Recommended For You)</p>
+            <p class="text-[9px] text-stone-400 font-bold uppercase mb-3">বিশেষ অফার (Special Offer)</p>
             <div id="container-2da14969d3a54865dc829ebf15bfd520"></div>
             <script async="async" data-cfasync="false" src="https://eliminatedfertilizer.com/2da14969d3a54865dc829ebf15bfd520/invoke.js"></script>
         </div>
@@ -175,20 +106,12 @@
     <!-- Google AdSense -->
     <div class="bg-white p-4 rounded-[2rem] border border-stone-100 shadow-sm text-center mb-12 overflow-hidden">
         <p class="text-[9px] text-stone-400 font-bold uppercase mb-3 tracking-widest">বিজ্ঞাপন (Advertisement)</p>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880"
-             crossorigin="anonymous"></script>
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-5830205241067880"
-             data-ad-slot="2440051371"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5830205241067880" crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5830205241067880" data-ad-slot="2440051371" data-ad-format="auto" data-full-width-responsive="true"></ins>
+        <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
     </div>
 
-    <!-- OUR PRODUCTS TITLE -->
+    <!-- OUR PRODUCTS SECTION -->
     <div id="our-products-section" class="text-center mb-8">
         <h2 class="text-2xl font-bold text-emerald-950 uppercase">আমাদের পণ্যসমূহ (Our Products)</h2>
         <div class="h-1 w-16 bg-emerald-600 mx-auto mt-3"></div>
@@ -206,40 +129,18 @@
     <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6"></div>
 </div>
 
-<!-- About Us Section -->
-<section id="about" class="max-w-7xl mx-auto px-6 py-20 border-t border-stone-100">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-        <div>
-            <h2 class="text-3xl font-bold text-emerald-950 uppercase tracking-tight mb-6">আমাদের সম্পর্কে (About Us)</h2>
-            <div class="space-y-4 text-stone-600 text-sm leading-relaxed">
-                <p>স্বাগতম <strong>FashionHub</strong>-এ। আমরা সরাসরি মানসম্মত পণ্য এবং আধুনিক গ্যাজেট আপনার দোরগোড়ায় পৌঁছে দিতে প্রতিশ্রুতিবদ্ধ। প্রতিটি পণ্য গুণগত মান যাচাই করে সংগ্রহ করা হয় যাতে আপনি সেরাটি পান।</p>
-                <p>Welcome to FashionHub. We provide high-quality gadgets and clothing at the best prices with premium service. Quality is our priority.</p>
-            </div>
-        </div>
-        <div class="bg-emerald-950 text-white p-8 rounded-[2.5rem] shadow-2xl">
-            <h4 class="text-lg font-bold mb-6 italic text-emerald-400">কেন আমাদের বেছে নেবেন? (Why Us?)</h4>
-            <ul class="space-y-4 text-[10px] uppercase font-bold tracking-widest opacity-90">
-                <li class="flex items-center gap-3"><i class="fas fa-certificate text-emerald-400"></i> প্রিমিয়াম কোয়ালিটি (Premium Quality)</li>
-                <li class="flex items-center gap-3"><i class="fas fa-truck-fast text-emerald-400"></i> দ্রুত ডেলিভারি (Fast Delivery)</li>
-                <li class="flex items-center gap-3"><i class="fas fa-headset text-emerald-400"></i> ২৪/৭ গ্রাহক সেবা (24/7 Support)</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
 <!-- Footer -->
 <footer class="bg-emerald-950 text-white pt-16 pb-10 text-center px-6">
-    <div class="max-w-7xl mx-auto">
-        <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 32px; letter-spacing: 4px; font-style: italic; color: green;">Fashion<span style="color: green;">Hub</span></h3>
-        <div class="flex flex-wrap justify-center gap-8 text-[11px] uppercase font-bold tracking-widest mb-10 text-emerald-100/40">
-            <button onclick="alert('গোপনীয়তা নীতি: আপনার ব্যক্তিগত তথ্য আমাদের কাছে সুরক্ষিত। (Privacy Policy)')">গোপনীয়তা নীতি (Privacy Policy)</button>
-            <button onclick="alert('শর্তাবলী: পণ্য হাতে পেয়ে চেক করে পেমেন্ট করুন। (Terms & Conditions)')">শর্তাবলী (Terms & Conditions)</button>
-            <a href="mailto:souviksaha200200@gmail.com" class="flex items-center gap-2 italic">
-                <i class="fas fa-envelope text-xs"></i> souviksaha200200@gmail.com
-            </a>
-        </div>
-        <p class="text-[9px] text-emerald-800 uppercase font-bold tracking-[0.4em]">© 2026 FashionHub Store. All Rights Reserved.</p>
+    <h3 style="font-size: 24px; font-weight: bold; margin-bottom: 10px; font-style: italic; color: green;">Fashion<span>Hub</span></h3>
+    <p class="text-xs text-stone-300 mb-6">যোগাযোগ করুন: <a href="mailto:souviksaha200200@gmail.com" class="text-emerald-400 underline font-bold">souviksaha200200@gmail.com</a></p>
+    
+    <div class="flex flex-wrap justify-center gap-6 text-xs uppercase font-bold tracking-wider mb-8 text-stone-300">
+        <button onclick="window.openInfoModal('about')" class="hover:text-white transition uppercase">About Us</button>
+        <button onclick="window.openInfoModal('privacy')" class="hover:text-white transition uppercase">Privacy Policy</button>
+        <button onclick="window.openInfoModal('terms')" class="hover:text-white transition uppercase">Terms & Conditions</button>
     </div>
+
+    <p class="text-[9px] text-emerald-800 uppercase font-bold tracking-[0.4em]">© 2026 FashionHub Store. All Rights Reserved.</p>
 </footer>
 
 <!-- LIGHTBOX -->
@@ -247,44 +148,53 @@
     <img id="lightboxImg" src="">
 </div>
 
+<!-- INFO MODAL (About, Privacy, Terms Popup) -->
+<div id="infoModal">
+    <div class="bg-white w-full max-w-lg rounded-[2.5rem] p-8 shadow-2xl relative max-h-[85vh] overflow-y-auto mx-4 text-left">
+        <button onclick="window.closeInfoModal()" class="absolute top-6 right-6 text-stone-400 text-xl font-bold"><i class="fas fa-times"></i></button>
+        <h3 id="infoTitle" class="font-bold text-xl text-emerald-950 mb-4 uppercase border-b pb-2"></h3>
+        <div id="infoContent" class="text-xs text-stone-600 leading-relaxed space-y-3 font-medium"></div>
+    </div>
+</div>
+
 <!-- ORDER MODAL -->
 <div id="orderModal">
     <div class="bg-white w-full max-w-md rounded-[2.5rem] p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto mx-4">
         <button onclick="window.closeModal()" class="absolute top-6 right-6 text-stone-300 text-xl"><i class="fas fa-times"></i></button>
-        <h3 class="font-bold text-xl text-emerald-950 mb-1 text-center uppercase tracking-tight">অর্ডার ফরম (Order Form)</h3>
-        <p class="text-[10px] text-stone-400 font-bold text-center uppercase mb-8 tracking-widest">অর্ডারের তথ্য (Order Details)</p>
+        <h3 class="font-bold text-xl text-emerald-950 mb-1 text-center uppercase">অর্ডার ফরম (Order Form)</h3>
+        <p class="text-[10px] text-stone-400 font-bold text-center uppercase mb-6 tracking-widest">আপনার তথ্য দিন (Provide Your Info)</p>
         
         <form onsubmit="window.submitOrder(event)" class="space-y-4">
             <div class="grid grid-cols-2 gap-4">
                 <div class="flex flex-col gap-1 text-left">
-                    <label class="text-[10px] font-bold text-stone-500 uppercase ml-1">সাইজ (Size)</label>
+                    <label class="text-[10px] font-bold text-stone-600 uppercase ml-1">সাইজ (Size)</label>
                     <select id="cusSize" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-3 py-3.5 text-xs font-bold outline-none">
                         <option value="Standard">Standard</option>
                         <option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option><option value="XXL">XXL</option>
                     </select>
                 </div>
                 <div class="flex flex-col gap-1 text-left">
-                    <label class="text-[10px] font-bold text-stone-500 uppercase ml-1">রঙ (Color)</label>
-                    <input type="text" id="cusColor" placeholder="রঙ (Color)" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-3 py-3.5 text-xs font-bold outline-none">
+                    <label class="text-[10px] font-bold text-stone-600 uppercase ml-1">রঙ (Color)</label>
+                    <input type="text" id="cusColor" placeholder="রঙ / Color" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-3 py-3.5 text-xs font-bold outline-none">
                 </div>
             </div>
-            
+
             <div class="flex flex-col gap-1 text-left">
-                <label class="text-[10px] font-bold text-stone-500 uppercase ml-1">নাম (Name)</label>
-                <input type="text" id="cusName" required placeholder="আপনার নাম (Your Name)" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold">
+                <label class="text-[10px] font-bold text-stone-600 uppercase ml-1">নাম (Name)</label>
+                <input type="text" id="cusName" required placeholder="আপনার নাম / Your Name" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs font-bold outline-none">
             </div>
 
             <div class="flex flex-col gap-1 text-left">
-                <label class="text-[10px] font-bold text-stone-500 uppercase ml-1">ফোন নম্বর (Phone)</label>
-                <input type="tel" id="cusPhone" required placeholder="আপনার ফোন নম্বর (Phone Number)" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold">
+                <label class="text-[10px] font-bold text-stone-600 uppercase ml-1">ফোন নম্বর (Phone Number)</label>
+                <input type="tel" id="cusPhone" required placeholder="ফোন নম্বর / Phone Number" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs font-bold outline-none">
             </div>
 
             <div class="flex flex-col gap-1 text-left">
-                <label class="text-[10px] font-bold text-stone-500 uppercase ml-1">পূর্ণ ঠিকানা (Full Address)</label>
-                <textarea id="cusAddress" required placeholder="গ্রাম, পোস্ট, জেলা ও পিন কোড (Full Address with Pin)" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-4 text-xs font-bold h-24"></textarea>
+                <label class="text-[10px] font-bold text-stone-600 uppercase ml-1">পূর্ণ ঠিকানা (Full Address)</label>
+                <textarea id="cusAddress" required placeholder="গ্রাম, পোস্ট, জেলা ও পিন কোড / Address with Pin Code" class="w-full bg-stone-50 border border-stone-100 rounded-xl px-4 py-3.5 text-xs font-bold h-24 outline-none"></textarea>
             </div>
 
-            <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-2xl shadow-xl text-xs uppercase tracking-widest active:scale-95 transition">হোয়াটসঅ্যাপে অর্ডার দিন (Order via WhatsApp)</button>
+            <button type="submit" class="w-full bg-emerald-950 text-white font-bold py-5 rounded-2xl text-xs uppercase shadow-xl tracking-wider">হোয়াটসঅ্যাপে অর্ডার দিন (Order via WhatsApp)</button>
         </form>
     </div>
 </div>
@@ -300,16 +210,7 @@
     window.fastScroll = (targetId) => {
         const element = document.getElementById(targetId);
         if (element) {
-            const offset = 80;
-            const bodyRect = document.body.getBoundingClientRect().top;
-            const elementRect = element.getBoundingClientRect().top;
-            const elementPosition = elementRect - bodyRect;
-            const offsetPosition = elementPosition - offset;
-
-            window.scrollTo({
-                top: offsetPosition,
-                behavior: "smooth"
-            });
+            element.scrollIntoView({ behavior: 'smooth' });
         }
     };
 
@@ -317,9 +218,23 @@
         const data = snap.val();
         if (data) {
             window.allProducts = Object.keys(data).map(key => ({ id: key, ...data[key] })).reverse();
+            // Google-কে ডাটা পাঠানোর ফাংশন কল করা
+updateSchema(window.allProducts);
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            if (productId) {
+                const targetProduct = window.allProducts.find(p => p.id === productId);
+                if (targetProduct && targetProduct.image) {
+                    const metaImgTag = document.getElementById('metaImage');
+                    if (metaImgTag) {
+                        metaImgTag.setAttribute('content', targetProduct.image);
+                    }
+                }
+            }
+
             renderProducts('all');
             document.getElementById('loading').style.display = 'none';
-            setTimeout(checkDeepLink, 1500);
+            setTimeout(checkDeepLink, 1000);
         }
     });
 
@@ -335,7 +250,7 @@
                 badge.innerHTML = 'আপনার পণ্যটি এখানে (Found It!)';
                 target.appendChild(badge);
                 target.classList.add('highlight-product');
-                setTimeout(() => { target.classList.remove('highlight-product'); if(badge) badge.remove(); }, 12000);
+                setTimeout(() => { target.classList.remove('highlight-product'); if(badge) badge.remove(); }, 10000);
             }
         }
     }
@@ -354,16 +269,13 @@
             const isOut = p.status === 'out';
             return `
             <div id="prod-${p.id}" class="product-card p-0 relative shadow-sm">
-                <button onclick="window.copyLink('${p.id}')" class="absolute top-3 right-3 z-30 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-emerald-900 shadow-md"><i class="fas fa-share-nodes text-[11px]"></i></button>
-                
+                <button onclick="window.copyLink('${p.id}')" class="absolute top-3 right-3 z-30 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-emerald-900 shadow-md active:scale-90 transition"><i class="fas fa-share-nodes text-[11px]"></i></button>
                 <div class="relative aspect-[4/5] overflow-hidden rounded-t-[23px] cursor-zoom-in" onclick="window.openLightbox('${p.image}')">
-                    <img src="${p.image}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy">
+                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover transition-transform duration-700 hover:scale-110" loading="lazy">
                     ${isOut ? `<div class="absolute inset-0 bg-black/60 flex items-center justify-center text-white text-[10px] font-bold uppercase">STOCK OUT</div>` : ''}
                 </div>
-                
                 <div class="p-4 flex flex-grow flex-col text-center">
                     <h4 class="product-name italic">${p.name}</h4>
-                    
                     <div class="mt-auto flex justify-between items-center bg-stone-50/50 p-2.5 rounded-2xl">
                         <span class="font-bold text-emerald-900 text-[15px]">₹${p.price}</span>
                         <button ${isOut ? 'disabled' : `onclick="window.openModal('${p.id}')"`} class="w-9 h-9 ${isOut ? 'bg-stone-300' : 'bg-emerald-950'} text-white rounded-xl shadow-lg active:scale-90 transition"><i class="fas fa-shopping-bag text-xs"></i></button>
@@ -376,6 +288,31 @@
     window.openLightbox = (url) => { document.getElementById('lightboxImg').src = url; document.getElementById('imageLightbox').classList.add('active'); document.body.style.overflow = 'hidden'; };
     window.closeLightbox = () => { document.getElementById('imageLightbox').classList.remove('active'); document.body.style.overflow = 'auto'; };
     
+    // Footer Modal Content Handler
+    window.openInfoModal = (type) => {
+        const titleEl = document.getElementById('infoTitle');
+        const contentEl = document.getElementById('infoContent');
+        
+        if (type === 'about') {
+            titleEl.innerText = "About Us";
+            contentEl.innerHTML = `<p>FashionHub-এ আপনাকে স্বাগতম। আমরা পুরুষ ও মহিলাদের জন্য প্রিমিয়াম কোয়ালিটি পোশাক এবং আধুনিক প্রযুক্তির গ্যাজেট সাশ্রয়ী মূল্যে প্রদান করে থাকি। আমাদের মূল লক্ষ্য হলো গ্রাহকদের সেরা কেনাকাটার অভিজ্ঞতা এবং বিশ্বস্ত সার্ভিস প্রদান করা। যেকোনো প্রয়োজনে সরাসরি আমাদের সাথে যোগাযোগ করতে পারেন।</p>`;
+        } else if (type === 'privacy') {
+            titleEl.innerText = "Privacy Policy";
+            contentEl.innerHTML = `<p>আপনার গোপনীয়তা আমাদের কাছে অত্যন্ত গুরুত্বপূর্ণ। অর্ডার করার সময় আপনি যে নাম, ফোন নম্বর এবং ঠিকানা প্রদান করেন, তা শুধুমাত্র আপনার পণ্য সফলভাবে ডেলিভারি করার কাজে ব্যবহার করা হয়। আমরা আপনার কোনো ব্যক্তিগত তথ্য তৃতীয় কোনো পক্ষের কাছে শেয়ার বা বিক্রি করি না।</p>`;
+        } else if (type === 'terms') {
+            titleEl.innerText = "Terms & Conditions";
+            contentEl.innerHTML = `<p>১. আমাদের ওয়েবসাইট থেকে কোনো পণ্য অর্ডার করার পর সঠিক তথ্য প্রদান করা বাধ্যতামূলক।<br>২. পণ্যের মূল্য এবং স্টক সময়ের সাথে পরিবর্তিত হতে পারে।<br>৩. যেকোনো রকম সহায়তার জন্য আমাদের অফিসিয়াল হোয়াটসঅ্যাপ বা ইমেলে যোগাযোগ করতে পারেন।</p>`;
+        }
+        
+        document.getElementById('infoModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeInfoModal = () => {
+        document.getElementById('infoModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    };
+
     window.copyLink = (id) => {
         const url = window.location.origin + window.location.pathname + '?id=' + id;
         
@@ -383,14 +320,14 @@
             navigator.clipboard.writeText(url).then(() => {
                 showToast();
             }).catch(() => {
-                fallbackCopyText(url);
+                fallbackCopy(url);
             });
         } else {
-            fallbackCopyText(url);
+            fallbackCopy(url);
         }
     };
 
-    function fallbackCopyText(text) {
+    function fallbackCopy(text) {
         const textArea = document.createElement("textarea");
         textArea.value = text;
         textArea.style.position = "fixed";
@@ -412,8 +349,8 @@
         setTimeout(() => t.style.display = 'none', 3000);
     }
 
-    window.openModal = (id) => { window.currentP = window.allProducts.find(x => x.id === id); document.getElementById('orderModal').classList.add('active'); };
-    window.closeModal = () => { document.getElementById('orderModal').classList.remove('active'); };
+    window.openModal = (id) => { window.currentP = window.allProducts.find(x => x.id === id); document.getElementById('orderModal').classList.add('active'); document.body.style.overflow = 'hidden'; };
+    window.closeModal = () => { document.getElementById('orderModal').classList.remove('active'); document.body.style.overflow = 'auto'; };
     
     window.submitOrder = (e) => {
         e.preventDefault();
@@ -422,6 +359,27 @@
         window.open(`https://wa.me/916291767175?text=${msg}`, '_blank');
         window.closeModal();
     };
+function updateSchema(products) {
+        const schemaArr = products.map(p => ({
+            "@context": "https://schema.org/",
+            "@type": "Product",
+            "name": p.name,
+            "image": [p.image],
+            "description": p.name + " - FashionHub Premium Collection",
+            "sku": p.id,
+            "offers": {
+                "@type": "Offer",
+                "url": window.location.origin + window.location.pathname + "?id=" + p.id,
+                "priceCurrency": "INR",
+                "price": p.price,
+                "availability": p.status === 'out' ? "https://schema.org/OutOfStock" : "https://schema.org/InStock"
+            }
+        }));
+        const schemaScript = document.getElementById('productSchema');
+        if (schemaScript) {
+            schemaScript.innerHTML = JSON.stringify(schemaArr);
+        }
+    }
 </script>
 </body>
-</html>
+</html> 
