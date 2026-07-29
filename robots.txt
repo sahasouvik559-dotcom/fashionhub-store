@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sahasouvik559-dotcom.github.io/fashionhub-store/sitemap.xml
