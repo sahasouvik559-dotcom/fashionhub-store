@@ -319,20 +319,40 @@ updateSchema(window.allProducts);
     window.openLightbox = (url) => { document.getElementById('lightboxImg').src = url; document.getElementById('imageLightbox').classList.add('active'); document.body.style.overflow = 'hidden'; };
     window.closeLightbox = () => { document.getElementById('imageLightbox').classList.remove('active'); document.body.style.overflow = 'auto'; };
     
-    // Footer Modal Content Handler
+        // Footer Modal Content Handler
     window.openInfoModal = (type) => {
         const titleEl = document.getElementById('infoTitle');
         const contentEl = document.getElementById('infoContent');
         
         if (type === 'about') {
             titleEl.innerText = "About Us";
-            contentEl.innerHTML = `<p>FashionHub-এ আপনাকে স্বাগতম। আমরা পুরুষ ও মহিলাদের জন্য প্রিমিয়াম কোয়ালিটি পোশাক এবং আধুনিক প্রযুক্তির গ্যাজেট সাশ্রয়ী মূল্যে প্রদান করে থাকি। আমাদের মূল লক্ষ্য হলো গ্রাহকদের সেরা কেনাকাটার অভিজ্ঞতা এবং বিশ্বস্ত সার্ভিস প্রদান করা। যেকোনো প্রয়োজনে সরাসরি আমাদের সাথে যোগাযোগ করতে পারেন।</p>`;
+            contentEl.innerHTML = `
+                <p class="font-bold text-emerald-900">আমাদের সম্পর্কে (About Us)</p>
+                <p>FashionHub-এ আপনাকে স্বাগতম। আমরা পুরুষ ও মহিলাদের জন্য প্রিমিয়াম কোয়ালিটি পোশাক এবং আধুনিক প্রযুক্তির গ্যাজেট সাশ্রয়ী মূল্যে প্রদান করে থাকি। আমাদের মূল লক্ষ্য হলো গ্রাহকদের সেরা কেনাকাটার অভিজ্ঞতা এবং বিশ্বস্ত সার্ভিস প্রদান করা।</p>
+                <p class="text-stone-400 italic text-[11px] mt-1">Welcome to FashionHub. We provide premium quality clothing for men and women, and modern gadgets at affordable prices. Our main goal is to provide customers with the best shopping experience and trusted service.</p>
+            `;
         } else if (type === 'privacy') {
             titleEl.innerText = "Privacy Policy";
-            contentEl.innerHTML = `<p>আপনার গোপনীয়তা আমাদের কাছে অত্যন্ত গুরুত্বপূর্ণ। অর্ডার করার সময় আপনি যে নাম, ফোন নম্বর এবং ঠিকানা প্রদান করেন, তা শুধুমাত্র আপনার পণ্য সফলভাবে ডেলিভারি করার কাজে ব্যবহার করা হয়। আমরা আপনার কোনো ব্যক্তিগত তথ্য তৃতীয় কোনো পক্ষের কাছে শেয়ার বা বিক্রি করি না।</p>`;
+            contentEl.innerHTML = `
+                <p class="font-bold text-emerald-900">গোপনীয়তা নীতি (Privacy Policy)</p>
+                <p>আপনার গোপনীয়তা আমাদের কাছে অত্যন্ত গুরুত্বপূর্ণ। অর্ডার করার সময় আপনি যে নাম, ফোন নম্বর এবং ঠিকানা প্রদান করেন, তা শুধুমাত্র আপনার পণ্য সফলভাবে ডেলিভারি করার কাজে ব্যবহার করা হয়। আমরা আপনার কোনো ব্যক্তিগত তথ্য তৃতীয় কোনো পক্ষের কাছে শেয়ার করি না।</p>
+                <p class="text-stone-400 italic text-[11px] mt-1">Your privacy is extremely important to us. The name, phone number, and address you provide during ordering are used solely for delivering your product successfully. We do not share your personal information with any third party.</p>
+            `;
         } else if (type === 'terms') {
             titleEl.innerText = "Terms & Conditions";
-            contentEl.innerHTML = `<p>১. আমাদের ওয়েবসাইট থেকে কোনো পণ্য অর্ডার করার পর সঠিক তথ্য প্রদান করা বাধ্যতামূলক।<br>২. পণ্যের মূল্য এবং স্টক সময়ের সাথে পরিবর্তিত হতে পারে।<br>৩. যেকোনো রকম সহায়তার জন্য আমাদের অফিসিয়াল হোয়াটসঅ্যাপ বা ইমেলে যোগাযোগ করতে পারেন।</p>`;
+            contentEl.innerHTML = `
+                <p class="font-bold text-emerald-900">শর্তাবলী (Terms & Conditions)</p>
+                <p>
+                ১. আমাদের ওয়েবসাইট থেকে কোনো পণ্য অর্ডার করার পর সঠিক তথ্য প্রদান করা বাধ্যতামূলক।<br>
+                ২. পণ্যের মূল্য এবং স্টক সময়ের সাথে পরিবর্তিত হতে পারে।<br>
+                ৩. যেকোনো রকম সহায়তার জন্য আমাদের অফিসিয়াল হোয়াটসঅ্যাপ বা ইমেলে যোগাযোগ করতে পারেন।
+                </p>
+                <p class="text-stone-400 italic text-[11px] mt-2">
+                1. Providing accurate information is mandatory after ordering any product from our website.<br>
+                2. Product prices and stock may change over time.<br>
+                3. You can contact our official WhatsApp or email for any kind of support.
+                </p>
+            `;
         }
         
         document.getElementById('infoModal').classList.add('active');
