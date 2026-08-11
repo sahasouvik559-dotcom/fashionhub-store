@@ -5,17 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <!-- SEO & Dynamic Social Media Tags -->
-    <title id="dynamicTitle">FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ ২০২৬</title>
-    <meta name="description" content="FashionHub-এ পাবেন প্রিমিয়াম কোয়ালিটি পোশাক এবং আধুনিক গ্যাজেট সেরা দামে।">
+    <!-- SEO Meta Tags -->
+    <title>FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ ২০২৬</title>
+    <meta name="description"
+        content="FashionHub-এ পাবেন প্রিমিয়াম কোয়ালিটি পোশাক, স্টাইলিশ পুরুষ ও মহিলা ফ্যাশন এবং আধুনিক গ্যাজেট সেরা দামে।">
 
-    <!-- Open Graph Tags (Facebook, WhatsApp, etc.) -->
-    <meta property="og:title" id="ogTitle" content="FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ">
-    <meta property="og:description" id="ogDesc" content="প্রিমিয়াম কোয়ালিটি পোশাক ও আধুনিক গ্যাজেট সেরা দামে।">
-    <meta property="og:image" id="ogImage" content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800">
-    <meta property="og:url" id="ogUrl" content="https://sahasouvik559-dotcom.github.io/fashionhub-store/">
+    <!-- Open Graph / Social Media Meta Tags (Dynamic Image Support) -->
+    <meta property="og:title" content="FashionHub | সেরা ফ্যাশন ও গ্যাজেট অনলাইন শপ ২০২৬">
+    <meta property="og:description"
+        content="প্রিমিয়াম কোয়ালিটি পোশাক, স্টাইলিশ পুরুষ ও মহিলা ফ্যাশন এবং আধুনিক গ্যাজেট সেরা দামে।">
     <meta property="og:type" content="website">
-
+    <meta property="og:url" content="https://sahasouvik559-dotcom.github.io/fashionhub-store/">
+    <meta property="og:image" id="metaImage"
+        content="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=800&auto=format&fit=crop&q=60">
     <!-- Google-কে সাইটটি ইনডেক্স করার অনুমতি দেওয়া -->
     <meta name="robots" content="index, follow">
 
@@ -687,18 +689,11 @@ updateSchema(window.allProducts);
     window.openShareModal = (id) => {
         const p = window.allProducts.find(x => x.id === id);
         window.currentShareP = p;
-        const currentUrl = `${window.location.origin}${window.location.pathname}?id=${p.id}`;
-
-        // মেটা ট্যাগ আপডেট (যাতে ফটো আর দাম শো করে)
-        document.getElementById('ogTitle').setAttribute('content', `${p.name} - ₹${p.price}`);
-        document.getElementById('ogImage').setAttribute('content', p.image);
-        document.getElementById('ogUrl').setAttribute('content', currentUrl);
-        document.getElementById('ogDesc').setAttribute('content', `সেরা দামে কিনুন মাত্র ₹${p.price}-এ!`);
-        document.title = p.name;
-
+        
         document.getElementById('shareImg').src = p.image;
         document.getElementById('shareName').innerText = p.name;
         document.getElementById('sharePrice').innerText = `₹${p.price}`;
+        
         document.getElementById('shareModal').classList.add('active');
         document.body.style.overflow = 'hidden';
     };
@@ -708,34 +703,24 @@ updateSchema(window.allProducts);
         document.body.style.overflow = 'auto';
     };
 
-    // ২. ফেসবুক শেয়ার
+    // Fast Social Sharing Functions
     window.shareToFB = () => {
-        const p = window.currentShareP;
-        const url = `${window.location.origin}${window.location.pathname}?id=${p.id}`;
+        const url = `${window.location.origin}${window.location.pathname}?id=${window.currentShareP.id}`;
         window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`, '_blank');
     };
 
-    // ৩. হোয়াটসঅ্যাপ শেয়ার
     window.shareToWA = () => {
         const p = window.currentShareP;
         const url = `${window.location.origin}${window.location.pathname}?id=${p.id}`;
-        const text = `🛍️ *${p.name}*\n💰 দাম: *₹${p.price}*\n\n🔥 সেরা এই প্রোডাক্টটি দেখতে নিচের লিঙ্কে ক্লিক করুন:\n${url}`;
+        const text = `🛍️ *${p.name}*\n💰 দাম: ₹${p.price}\n🔥 সেরা কালেকশন দেখুন এখানে:\n${url}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
 
-    // ৪. ইনস্টাগ্রাম ও অন্যান্য অ্যাপ
-    window.nativeShare = async () => {
-        const p = window.currentShareP;
-        const url = `${window.location.origin}${window.location.pathname}?id=${p.id}`;
-        try {
-            await navigator.share({
-                title: p.name,
-                text: `${p.name} মাত্র ₹${p.price}-এ!`,
-                url: url
-            });
-        } catch (err) {
-            window.copyCurrentLink();
-        }
+    window.shareToIG = () => {
+        // Instagram সরাসরি ফিড শেয়ার সাপোর্ট করে না, তাই লিঙ্ক কপি করে ওপেন করে দিবে।
+        window.copyCurrentLink();
+        alert('লিঙ্ক কপি হয়েছে! এখন ইনস্ট্রাগ্রামে পেস্ট করুন।');
+        window.open(`https://www.instagram.com/`, '_blank');
     };
 
     window.nativeShare = async () => {
